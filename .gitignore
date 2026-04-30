@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+dist/
+build/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# 개인 로컬 세팅 (Claude Code)
+.claude/settings.local.json
