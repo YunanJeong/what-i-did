@@ -1,12 +1,34 @@
 from __future__ import annotations
 
 import json
+from dataclasses import dataclass
 
 import anthropic
 
 from what_i_did import prompts
 from what_i_did.collect import build_file_tree, build_files_block
 from what_i_did.models import RepoAnalysis, RepoMeta, SelectedFile
+
+
+@dataclass
+class TokenTotals:
+    # LLM 호출 간 누적되는 토큰 사용량. anthropic 응답의 usage 필드 모양을 그대로
+    # 미러링한다 (Bedrock·Anthropic 양쪽 공통).
+    input_tokens: int = 0
+    output_tokens: int = 0
+    cache_creation_input_tokens: int = 0
+    cache_read_input_tokens: int = 0
+
+    def add(self, usage) -> None:
+        # Bedrock 응답은 cache_* 필드가 None 이거나 부재일 수 있어 getattr 로 방어.
+        self.input_tokens += usage.input_tokens or 0
+        self.output_tokens += usage.output_tokens or 0
+        self.cache_creation_input_tokens += (
+            getattr(usage, "cache_creation_input_tokens", 0) or 0
+        )
+        self.cache_read_input_tokens += (
+            getattr(usage, "cache_read_input_tokens", 0) or 0
+        )
 
 
 # Anthropic API 의 output_config.format 에 그대로 주입하는 JSON Schema.
@@ -50,7 +72,9 @@ def analyze_repo(
     truncated: bool,
     model: str,
     lang: str,
-) -> RepoAnalysis:
+) -> tuple[RepoAnalysis, object]:
+    # 리턴을 (analysis, usage) 튜플로 내보낸다. CLI 가 per-repo 토큰 사용량을
+    # 한 줄 찍을 수 있도록 이번 요청분 usage 를 그대로 전달한다.
     p = prompts.get(lang)
     user_text = p.USER_TEMPLATE.format(
         full_name=meta.full_name,
@@ -91,7 +115,7 @@ def analyze_repo(
 
     # LLM 은 input 이 잘렸다는 사실을 항상 눈치채지는 못하므로,
     # 호출측에서 truncated 를 감지했으면 모델 판정과 OR 로 합친다.
-    return RepoAnalysis(
+    analysis = RepoAnalysis(
         name=meta.name,
         html_url=meta.html_url,
         description=meta.description,
@@ -105,6 +129,7 @@ def analyze_repo(
         is_toy=bool(data.get("is_toy", False)),
         truncated=bool(data.get("truncated", truncated)) or truncated,
     )
+    return analysis, response.usage
 
 
 def summarize_portfolio(
@@ -113,9 +138,10 @@ def summarize_portfolio(
     analyses: list[RepoAnalysis],
     model: str,
     lang: str,
-) -> str:
+) -> tuple[str, object | None]:
+    # (text, usage) 튜플 리턴. analyses 가 비어 LLM 호출을 건너뛴 경우 usage 는 None.
     if not analyses:
-        return ""
+        return "", None
     p = prompts.get(lang)
     compact = [
         {
@@ -142,4 +168,4 @@ def summarize_portfolio(
             }
         ],
     )
-    return _extract_text(response).strip()
+    return _extract_text(response).strip(), response.usage

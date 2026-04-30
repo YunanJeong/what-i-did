@@ -41,6 +41,25 @@ def _default_model(provider: str) -> str:
     return ""  # bedrock: 사용자가 --model 을 반드시 주어야 함
 
 
+def _fmt_usage_line(usage) -> str:
+    # 한 요청분 사용량을 한 줄 텍스트로. 캐시 필드는 Bedrock 에서 None 일 수 있음.
+    cc = getattr(usage, "cache_creation_input_tokens", 0) or 0
+    cr = getattr(usage, "cache_read_input_tokens", 0) or 0
+    return (
+        f"tokens: in={usage.input_tokens or 0} out={usage.output_tokens or 0} "
+        f"cache_create={cc} cache_read={cr}"
+    )
+
+
+def _print_totals(totals: "analyze.TokenTotals") -> None:
+    console.print("─── token usage ─────────────────")
+    console.print(f"  input        : {totals.input_tokens:>10,}")
+    console.print(f"  output       : {totals.output_tokens:>10,}")
+    console.print(f"  cache create : {totals.cache_creation_input_tokens:>10,}")
+    console.print(f"  cache read   : {totals.cache_read_input_tokens:>10,}")
+    console.print("─────────────────────────────────")
+
+
 def _default_output(username: str) -> Path:
     stamp = datetime.now().strftime("%Y%m%d")
     return Path(f"what-i-did-{username}-{stamp}")
@@ -131,6 +150,8 @@ def generate(
     client = _make_client(provider_l)
 
     analyses: list[RepoAnalysis] = []
+    # 실행 전체에 걸친 토큰 누적. 캐시 히트 repo 는 LLM 호출이 없으므로 합산 0.
+    totals = analyze.TokenTotals()
     # 클론 대상은 분석이 끝나면 의미 없으므로 임시 디렉토리에 두고 전체 삭제한다.
     tmp_root = Path(tempfile.mkdtemp(prefix="what-i-did-"))
     try:
@@ -157,13 +178,15 @@ def generate(
 
             console.print(f"  analyzing {len(selected)} file(s)…")
             try:
-                analysis = analyze.analyze_repo(
+                analysis, usage = analyze.analyze_repo(
                     client, meta, selected, truncated, model, lang_l
                 )
             except Exception as exc:
                 console.print(f"  [red]analysis failed: {exc}[/red]")
                 continue
 
+            totals.add(usage)
+            console.print(f"  [dim]{_fmt_usage_line(usage)}[/dim]")
             cache.save(cache_dir, username, meta.name, analysis, model)
             analyses.append(analysis)
     finally:
@@ -175,9 +198,12 @@ def generate(
 
     console.print("Writing overall summary…")
     try:
-        overall = analyze.summarize_portfolio(
+        overall, summary_usage = analyze.summarize_portfolio(
             client, username, analyses, model, lang_l
         )
+        if summary_usage is not None:
+            totals.add(summary_usage)
+            console.print(f"  [dim]{_fmt_usage_line(summary_usage)}[/dim]")
     except Exception as exc:
         console.print(f"  [yellow]summary failed: {exc}[/yellow]")
         overall = ""
@@ -191,6 +217,8 @@ def generate(
     docx_render.render(portfolio, docx_path)
     console.print(f"[green]✓[/green] {md_path}")
     console.print(f"[green]✓[/green] {docx_path}")
+
+    _print_totals(totals)
 
 
 def app() -> None:
