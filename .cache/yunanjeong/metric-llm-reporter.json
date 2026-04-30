@@ -1,0 +1,42 @@
+{
+  "saved_at": "2026-04-30T07:19:09.243404Z",
+  "model": "global.anthropic.claude-sonnet-4-6",
+  "analysis": {
+    "name": "metric-llm-reporter",
+    "html_url": "https://github.com/YunanJeong/metric-llm-reporter",
+    "description": "목적: 내 서버들 너가 모니터링 해줘!@ ",
+    "primary_language": "Shell",
+    "stars": 0,
+    "purpose": "여러 Prometheus 서버에서 서버 메트릭을 수집하고 LLM(로컬/OpenAI/AWS Bedrock)을 통해 SRE 관점의 분석 보고서를 생성한 뒤 이메일로 발송하는 자동화 모니터링 도구입니다.",
+    "key_features": [
+      "복수 Prometheus 서버에서 CPU/메모리/디스크/네트워크 메트릭을 PromQL로 수집",
+      "24시간 전 대비 증감폭(diff) 계산 및 80%/90% 임계치 초과 시 !·!! 기호로 시각화",
+      "Source/Job/Instance 통합 ID 및 N:숫자 단축 ID 매핑 테이블을 생성하여 LLM에 전달",
+      "Ollama(로컬), OpenAI 호환 API, AWS Bedrock(Claude) 세 가지 LLM 백엔드 중 선택 지원",
+      "jq 기반 JSON 처리로 컴팩트 1줄/노드 포맷 생성(토큰 절감 목적)",
+      "분석 결과를 mailutils를 통해 SMTP 메일로 발송"
+    ],
+    "tech_stack": [
+      "Bash",
+      "Prometheus",
+      "PromQL",
+      "Ollama",
+      "OpenAI API",
+      "AWS Bedrock",
+      "AWS CLI",
+      "curl",
+      "jq",
+      "mailutils",
+      "Python"
+    ],
+    "highlights": [
+      "1.fetch.sh에서 jq 내부 헬퍼 함수(def)를 활용하여 오늘/어제 데이터 결합, diff 포맷팅, 임계치 기호 처리를 단일 jq 파이프라인으로 구현",
+      "LLM 프롬프트를 한국어+중국어 혼합으로 작성하여 Qwen 모델의 추론 출력 억제 및 출력 형식 강제 제어를 시도",
+      "모듈별(fetch/brain/mail) 독립 실행 가능 설계로 stdin/stdout 파이프라인 구성, ENV_FILE 파라미터로 환경 전환",
+      "AWS Bedrock 호출 시 임시 파일 기반 JSON payload 생성 및 Bearer 토큰 환경변수 충돌 방지를 위한 명시적 unset 처리"
+    ],
+    "user_contribution_notes": "파일 전체가 단일 저자에 의해 설계·작성된 것으로 보이며, prototype.py는 초기 아이디어 스케치이고 실제 구현은 Shell 스크립트 3개로 완성되어 있습니다. 아키텍처 설계, PromQL 쿼리, jq 처리 로직, LLM 연동, 메일 발송까지 전 범위가 해당 개발자의 직접 구현으로 판단됩니다.",
+    "is_toy": false,
+    "truncated": false
+  }
+}

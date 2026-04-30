@@ -1,0 +1,35 @@
+{
+  "saved_at": "2026-04-30T07:27:30.792939Z",
+  "model": "global.anthropic.claude-sonnet-4-6",
+  "analysis": {
+    "name": "kafka-connect-s3-without-topicname",
+    "html_url": "https://github.com/YunanJeong/kafka-connect-s3-without-topicname",
+    "description": "Custom Partitioner: TopiclessTimeBasedPartitioner",
+    "primary_language": "Shell",
+    "stars": 2,
+    "purpose": "Kafka S3 Sink Connector의 기본 TimeBasedPartitioner를 확장하여 S3 오브젝트 경로에서 토픽 이름을 제거하는 커스텀 파티셔너 플러그인입니다. `<prefix>/<topic>/<encodedPartition>` 형식 대신 `<prefix>/<encodedPartition>` 형식으로 S3 경로를 생성합니다.",
+    "key_features": [
+      "TimeBasedPartitioner를 상속하여 generatePartitionedPath 메서드만 오버라이드해 토픽명 제거 구현",
+      "Maven으로 독립 JAR 빌드 후 기존 S3 Sink Connector 디렉토리에 추가 배치하는 플러그인 방식 배포",
+      "Docker 이미지에 S3 Sink Connector와 커스텀 파티셔너를 함께 패키징하여 Docker Hub에 배포",
+      "Shell 스크립트로 S3 Sink Connector ZIP과 커스텀 JAR를 다운로드 후 Docker 이미지 빌드 및 푸시 자동화"
+    ],
+    "tech_stack": [
+      "Java",
+      "Maven",
+      "Kafka Connect",
+      "Confluent S3 Sink Connector",
+      "kafka-connect-storage-partitioner",
+      "Docker",
+      "Shell"
+    ],
+    "highlights": [
+      "단 5줄의 Java 코드로 generatePartitionedPath 오버라이드만으로 S3 경로 구조를 변경하는 최소한의 구현",
+      "기존 S3 Sink Connector의 의존성을 재사용하므로 커스텀 JAR에 중복 dependency를 포함시키지 않는 경량 플러그인 설계",
+      "confluent.io Maven 저장소를 명시적으로 추가해 kafka-connect-storage-partitioner 11.1.4 의존성만으로 빌드 가능하도록 구성"
+    ],
+    "user_contribution_notes": "TopiclessTimeBasedPartitioner.java, pom.xml, 빌드 스크립트, Docker 설정 등 모든 파일이 해당 개발자 단독 작성으로 보이며, 프로젝트 전체의 주된 저자입니다.",
+    "is_toy": false,
+    "truncated": false
+  }
+}

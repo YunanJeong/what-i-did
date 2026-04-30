@@ -1,0 +1,39 @@
+{
+  "saved_at": "2026-04-30T07:26:37.388981Z",
+  "model": "global.anthropic.claude-sonnet-4-6",
+  "analysis": {
+    "name": "lora-sd",
+    "html_url": "https://github.com/YunanJeong/lora-sd",
+    "description": "LoRA(Low Rank Adaptation), Stable-Diffusion(Model), Packer",
+    "primary_language": "HCL",
+    "stars": 0,
+    "purpose": "AWS EC2에서 Stable Diffusion WebUI와 LoRA 학습 도구(kohya_ss)를 사전 설치한 온디맨드 생성 AI용 AMI 이미지를 Packer로 빌드하기 위한 자동화 스크립트 모음입니다.",
+    "key_features": [
+      "NVIDIA Driver 및 CUDA 12.5를 Ubuntu 24.04에 자동 설치",
+      "Python 3.10 환경 및 가상환경 구성 자동화",
+      "AUTOMATIC1111 Stable Diffusion WebUI를 AMI에 사전 설치 및 초기 실행 완료 상태로 구성",
+      "kohya_ss LoRA 학습 툴을 자동 클론 및 setup.sh 실행",
+      "WebUI 설치 완료 감지 후 프로세스를 강제 종료하여 Packer 빌드 진행 보장",
+      "Ubuntu 22.04(Deep Learning Base AMI)와 Ubuntu 24.04 두 가지 소스 AMI 지원"
+    ],
+    "tech_stack": [
+      "HCL",
+      "Packer",
+      "Bash",
+      "NVIDIA CUDA",
+      "Python 3.10",
+      "Stable Diffusion WebUI (AUTOMATIC1111)",
+      "kohya_ss",
+      "filebrowser",
+      "AWS EC2 AMI"
+    ],
+    "highlights": [
+      "webui.sh가 설치와 실행을 동시에 점유하는 문제를 해결하기 위해 wait_webui_install.sh를 nohup 백그라운드로 실행하여 HTTP 200 응답 확인 후 강제 종료하는 방식으로 Packer 빌드 완료를 보장",
+      "단순 sleep 대신 포트 폴링(최대 120회, 10초 간격)으로 설치 완료 시점을 동적으로 감지",
+      "Ubuntu 24 LTS(클린)와 Ubuntu 22 GPU 전용 딥러닝 AMI 두 경로를 분리하여 설치 스텝을 달리 구성"
+    ],
+    "user_contribution_notes": "파일 수가 적고 README와 스크립트 모두 단일 작성자 스타일로 일관성이 있으며, 한국어 주석과 설계 의도 설명이 상세히 포함되어 있어 해당 개발자가 주된 저자로 판단됩니다.",
+    "is_toy": false,
+    "truncated": false
+  }
+}

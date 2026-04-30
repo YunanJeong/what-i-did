@@ -9,3 +9,6 @@ build/
 
 # 개인 로컬 세팅 (Claude Code)
 .claude/settings.local.json
+
+#.cache/
+#cache/

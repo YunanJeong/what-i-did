@@ -1,0 +1,40 @@
+{
+  "saved_at": "2026-04-30T07:24:11.093438Z",
+  "model": "global.anthropic.claude-sonnet-4-6",
+  "analysis": {
+    "name": "ec2-k8s-deploy",
+    "html_url": "https://github.com/YunanJeong/ec2-k8s-deploy",
+    "description": "ec2-k8s-deploy",
+    "primary_language": "HCL",
+    "stars": 0,
+    "purpose": "AWS EC2 인스턴스에 Terraform을 사용하여 k3s 기반 Kubernetes 클러스터를 자동으로 프로비저닝하는 IaC 프로젝트입니다. 컨트롤플레인 1대와 다수의 에이전트 노드를 EC2에 배포하고 Docker, Helm, k9s까지 설치 자동화합니다.",
+    "key_features": [
+      "Terraform으로 EC2 인스턴스 다중 생성 및 보안 그룹 구성",
+      "remote-exec provisioner를 통해 k3s 컨트롤플레인 및 에이전트 노드 자동 설치",
+      "컨트롤플레인에서 node-token을 추출해 에이전트에 자동 전달하는 로컬 실행 흐름 구현",
+      "Nexus(Docker 레지스트리, 파일 저장소) 및 GitLab 보안 그룹 규칙을 EC2 인스턴스에 동적으로 추가",
+      "Docker daemon.json에 insecure-registry 및 로그 설정을 사전 구성 후 Docker 설치",
+      "k3s 인증서 만료 방지를 위한 crontab 자동 등록 스크립트 포함"
+    ],
+    "tech_stack": [
+      "Terraform",
+      "HCL",
+      "AWS EC2",
+      "AWS Security Groups",
+      "k3s",
+      "Docker",
+      "Helm",
+      "k9s",
+      "Bash"
+    ],
+    "highlights": [
+      "k3s 서버 설치 후 node-token을 local-exec로 로컬 파일에 저장하고, 이후 에이전트 노드 provisioner에서 해당 파일을 읽어 K3S_TOKEN 환경변수로 주입하는 순차 의존성 설계가 명확함",
+      "보안 그룹에 신규 그룹을 추가하는 방식 대신, 기존 저장소 보안 그룹에 인그레스 규칙만 추가하는 방식을 선택하여 인스턴스당 보안 그룹 개수 제한 문제를 회피함",
+      "k3s 리프 인증서(1년 만료) 자동 갱신을 위해 서버/에이전트 노드 역할을 systemctl 상태로 판별해 각각 다른 crontab을 등록하는 스크립트를 구현함",
+      "Docker daemon.json을 설치 전에 먼저 작성하여 insecure-registry 및 k3s 권장 로그 max-size(10m)를 선제 적용하는 순서 설계"
+    ],
+    "user_contribution_notes": "단일 저자가 전체 구조를 직접 설계한 것으로 보입니다. Terraform 모듈 분리, init 스크립트 작성, 운영 시 발생하는 인증서 만료 문제 대응 등 실사용 경험이 반영된 독자적인 코드입니다.",
+    "is_toy": false,
+    "truncated": false
+  }
+}

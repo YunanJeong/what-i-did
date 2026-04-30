@@ -1,0 +1,31 @@
+{
+  "saved_at": "2026-04-30T07:25:53.241576Z",
+  "model": "global.anthropic.claude-sonnet-4-6",
+  "analysis": {
+    "name": "ghub-mouse-doubleclick-reducer",
+    "html_url": "https://github.com/YunanJeong/ghub-mouse-doubleclick-reducer",
+    "description": null,
+    "primary_language": "Lua",
+    "stars": 0,
+    "purpose": "Logitech G Hub에서 마우스 사이드 버튼(뒤로가기)의 비의도적 더블클릭을 무시하기 위한 Lua 스크립트로, 설정된 시간 간격(ms) 내 중복 클릭을 필터링한다.",
+    "key_features": [
+      "마우스 버튼 이벤트 감지 및 중복 클릭 필터링",
+      "IGNORE_INTERVAL_MS 변수로 무시 간격 조정 가능",
+      "정상 클릭 시 Alt+Left 키 조합으로 브라우저 뒤로가기 동작 실행",
+      "JSON 형식의 디버그 로그 출력으로 이벤트 시간 및 간격 모니터링",
+      "테스트용 키 입력 함수(testPress) 별도 구현"
+    ],
+    "tech_stack": [
+      "Lua",
+      "Logitech G Hub Scripting API"
+    ],
+    "highlights": [
+      "클릭 간격을 밀리초 단위로 측정해 IGNORE_INTERVAL_MS 임계값과 비교하는 단순하지만 실용적인 디바운싱 로직 구현",
+      "이벤트 로그를 JSON 구조로 출력해 간격 최적화 시 모니터링 편의성 확보",
+      "goBack()과 testPress()를 분리해 실제 동작과 테스트 동작을 전환 가능하도록 설계"
+    ],
+    "user_contribution_notes": "파일이 2개뿐인 단독 작성 스크립트로, 해당 개발자가 전체 코드를 직접 작성한 주된 저자로 보인다.",
+    "is_toy": false,
+    "truncated": false
+  }
+}

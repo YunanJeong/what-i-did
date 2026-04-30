@@ -1,0 +1,34 @@
+{
+  "saved_at": "2026-04-30T07:26:10.121254Z",
+  "model": "global.anthropic.claude-sonnet-4-6",
+  "analysis": {
+    "name": "db-helm",
+    "html_url": "https://github.com/YunanJeong/db-helm",
+    "description": null,
+    "primary_language": null,
+    "stars": 0,
+    "purpose": "Kubernetes 환경에서 테스트용 MySQL을 빠르게 배포하기 위한 Helm values 파일 모음이다. Bitnami MySQL Helm 차트(v11.1.2)에 적용할 커스텀 설정을 관리한다.",
+    "key_features": [
+      "Bitnami MySQL Helm 차트를 이용해 Kubernetes에 MySQL 배포 및 업그레이드 수행",
+      "LoadBalancer 타입 서비스로 MySQL 3306/33060 포트를 외부 노출",
+      "테스트 편의를 위해 liveness/readiness/startup 프로브 전체 비활성화",
+      "secondary replicaCount를 0으로 설정해 단독(standalone) 구성으로 단순화",
+      "PersistentVolume 비활성화로 컨테이너 재시작 시 데이터 초기화 가능하도록 구성",
+      "인증 정보(root/user 계정, DB명) 를 values 파일에 직접 명시하여 빠른 테스트 환경 구성"
+    ],
+    "tech_stack": [
+      "Helm",
+      "Kubernetes",
+      "Bitnami MySQL",
+      "MySQL 8.4"
+    ],
+    "highlights": [
+      "mysql.yaml은 Bitnami 기본 values에서 테스트 목적에 맞게 최소한의 항목만 오버라이드한 커스텀 values 파일로, 원본 전체 values(mysql-11.1.2.yaml)를 참조용으로 함께 보관하는 구조",
+      "WSL 환경에서 MySQL 서버 업그레이드 프로세스(80400→80400) 로 인한 초기화 지연 현상을 직접 확인하고 README에 트러블슈팅 내용으로 기록",
+      "localhost 소켓 통신 문제(mysqld.sock 없음)와 127.0.0.1 TCP 접속 우회 방법을 실제 에러 메시지와 함께 문서화"
+    ],
+    "user_contribution_notes": "단일 저자가 작성한 개인 설정 저장소로 보인다. mysql-11.1.2.yaml은 Bitnami 공식 차트의 기본 values를 그대로 저장한 파일이며, 실질적인 커스터마이징은 mysql.yaml에만 집중되어 있다. README의 트러블슈팅 내용은 본인이 직접 경험한 내용을 기록한 것으로 확인된다.",
+    "is_toy": true,
+    "truncated": false
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "saved_at": "2026-04-30T07:28:50.755736Z",
+  "model": "global.anthropic.claude-sonnet-4-6",
+  "analysis": {
+    "name": "simple-parquet-reader",
+    "html_url": "https://github.com/YunanJeong/simple-parquet-reader",
+    "description": null,
+    "primary_language": "Python",
+    "stars": 0,
+    "purpose": "AWS S3 또는 로컬에 저장된 Parquet 파일을 CLI 환경에서 간편하게 읽고 DataFrame으로 탐색할 수 있는 간단한 Parquet 뷰어 도구입니다.",
+    "key_features": [
+      "S3 URI 입력을 받아 awswrangler로 Parquet 파일을 DataFrame으로 로드",
+      "readline을 활용한 interactive Python CLI 루프 제공",
+      "단축 커맨드(1~4)로 pandas display 옵션 빠르게 변경",
+      "exec()를 통해 CLI에서 임의의 DataFrame 표현식 실행",
+      "argparse를 이용한 CLI 인자(-r, -s, -e) 처리 구조 구현",
+      "setuptools 기반 패키지 구조 및 버전 파일 분리"
+    ],
+    "tech_stack": [
+      "Python",
+      "pandas",
+      "awswrangler",
+      "setuptools",
+      "argparse",
+      "readline"
+    ],
+    "highlights": [
+      "exec()로 사용자 입력 표현식을 직접 평가하는 미니 Python REPL 구현",
+      "util.py의 get_local_parq()가 df=1을 반환하는 미완성 상태로, README에 '현재 실행 불가'라고 명시되어 있어 개발 진행 중임을 코드로도 확인 가능",
+      "__main__.py에서 read_filepath, datetime 등 미정의 이름을 참조하는 코드가 존재해 실행 시 오류 발생 가능한 불완전한 상태",
+      "패키지 install_requires에 실제 런타임 의존성(pandas, awswrangler)이 누락되고 wheel만 기재되어 있어 패키징 미완성"
+    ],
+    "user_contribution_notes": "파일 전체가 단일 저자(njhgle@gmail.com)의 작성물로 보이며, 커밋 이력 없이 파일 구조와 주석 스타일이 일관되어 주된 저자로 판단됩니다. 다만 README에 '연습삼아 새로만들기'라고 명시되어 있고 코드가 미완성 상태입니다.",
+    "is_toy": true,
+    "truncated": false
+  }
+}

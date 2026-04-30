@@ -1,0 +1,25 @@
+{
+  "saved_at": "2026-04-30T07:24:42.534772Z",
+  "model": "global.anthropic.claude-sonnet-4-6",
+  "analysis": {
+    "name": "yunanjeong",
+    "html_url": "https://github.com/YunanJeong/yunanjeong",
+    "description": null,
+    "primary_language": null,
+    "stars": 0,
+    "purpose": "GitHub 프로필 페이지에 표시되는 개인 소개용 특별 레포지토리로, LinkedIn 배지 링크만 포함된 최소한의 프로필 README입니다.",
+    "key_features": [
+      "LinkedIn 프로필 배지 링크 표시"
+    ],
+    "tech_stack": [
+      "Markdown"
+    ],
+    "highlights": [
+      "GitHub 프로필 README 전용 특별 레포지토리로, 실질적인 코드나 기능 없이 배지 하나만 존재함",
+      "기본 제공 템플릿의 안내 주석이 그대로 주석 처리된 채 남아 있어 초기 설정 수준에서 거의 수정되지 않음"
+    ],
+    "user_contribution_notes": "레포지토리 소유자가 직접 생성한 프로필 README이지만, 내용이 거의 없고 템플릿 상태에 가까워 기여 범위가 매우 제한적입니다.",
+    "is_toy": true,
+    "truncated": false
+  }
+}

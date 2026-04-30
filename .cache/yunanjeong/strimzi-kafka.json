@@ -1,0 +1,24 @@
+{
+  "saved_at": "2026-04-30T07:22:13.707258Z",
+  "model": "global.anthropic.claude-sonnet-4-6",
+  "analysis": {
+    "name": "strimzi-kafka",
+    "html_url": "https://github.com/YunanJeong/strimzi-kafka",
+    "description": null,
+    "primary_language": null,
+    "stars": 0,
+    "purpose": "Strimzi 기반 Kafka 관련 설정 또는 배포 구성을 다루는 레포지토리로 보이나, 실질적인 파일 내용이 없어 정확한 목적을 확인할 수 없습니다.",
+    "key_features": [],
+    "tech_stack": [
+      "Strimzi",
+      "Kafka"
+    ],
+    "highlights": [
+      "README.md 파일이 제목만 존재하며 실질적인 코드나 설정 파일이 전혀 없음",
+      "파일 트리에 README.md 외 다른 파일이 확인되지 않아 프로젝트가 초기 생성 단계에 머물러 있음"
+    ],
+    "user_contribution_notes": "파일 내용이 거의 없어 기여 범위나 저자 여부를 판단할 수 없습니다.",
+    "is_toy": true,
+    "truncated": false
+  }
+}

@@ -120,6 +120,26 @@ uv run what-i-did octocat --max-repos 2
 - `--refresh` 는 캐시를 전부 무시하고 재분석한다.
 - repo 변경을 자동 감지하지는 않는다. cron 으로 주기 실행해도 저렴하게 유지되며, 갱신이 필요할 때는 명시적으로 `--refresh`.
 
+### 여러 머신 간 캐시 공유 (캐시를 git 으로 백업)
+
+`--cache-dir` 을 레포 안의 경로로 지정하면 분석 캐시가 레포에 함께 따라온다. 다른 머신에서 `git pull` 만으로 LLM 재호출 없이 문서를 재생성할 수 있다.
+
+```bash
+# 캐시를 레포 안 ./cache 에 쌓기
+uv run what-i-did yunanjeong --cache-dir ./cache
+
+# 캐시 파일 커밋
+git add cache/
+git commit -m "update analysis cache"
+git push
+
+# 다른 머신에서
+git pull
+uv run what-i-did yunanjeong --cache-dir ./cache   # LLM 호출 없이 캐시 재사용
+```
+
+**주의:** 캐시 파일에는 LLM 이 생성한 평가 텍스트(`user_contribution_notes` 에 "기여 범위 제한적" 같은 판정 포함 가능)가 들어간다. 본인 계정 분석 결과를 본인의 공개 레포에 담는 건 문제없지만, 타인 계정을 분석한 캐시를 공개 레포에 올리는 건 피하는 게 좋다.
+
 ## 한계
 
 - 공개 레포만 분석한다. private repo 는 지원하지 않는다.

@@ -1,0 +1,47 @@
+{
+  "saved_at": "2026-04-30T07:19:33.100521Z",
+  "model": "global.anthropic.claude-sonnet-4-6",
+  "analysis": {
+    "name": "fluentd-helm",
+    "html_url": "https://github.com/YunanJeong/fluentd-helm",
+    "description": "Multi-platform Interoperability on Kubernetes",
+    "primary_language": "Dockerfile",
+    "stars": 0,
+    "purpose": "Kubernetes(K3s) 환경에서 Bitnami Fluentd Helm 차트를 기반으로 Kafka, Loki, Redis 등 이기종 데이터 플랫폼 간 데이터 파이프라인을 구성하기 위한 Helm values 템플릿 및 운영 레퍼런스 모음이다.",
+    "key_features": [
+      "Fluentd aggregator-only 모드로 HTTP 수신 후 Kafka(kafka2/rdkafka2), Loki, Redis, forward 등 다양한 출력 플러그인으로 라우팅하는 시나리오별 values 파일 제공",
+      "rawstring 전달을 위한 parser `none` + formatter `single_value` 조합 패턴을 명시적으로 구현",
+      "Kafka SASL(SCRAM-SHA-256/512) 인증이 포함된 produce 설정 파일 별도 제공",
+      "InitContainer + hostPath + emptyDir 볼륨 체인을 이용한 오프라인 gem 플러그인 설치 패턴 구현",
+      "fluent-plugin-beats 수신 후 record_modifier로 whitelist 필드 필터링 및 topic_key 기반 멀티토픽 Kafka produce 구현(replicaCount 3 구성)",
+      "librdkafka 의존성을 포함한 커스텀 Fluentd Docker 이미지 빌드 및 rdkafka_group/rdkafka2 플러그인 적용 설정 제공"
+    ],
+    "tech_stack": [
+      "Fluentd",
+      "Helm",
+      "Kubernetes",
+      "K3s",
+      "Kafka",
+      "fluent-plugin-kafka",
+      "rdkafka",
+      "fluent-plugin-beats",
+      "fluent-plugin-redis",
+      "fluent-plugin-loki",
+      "Loki",
+      "Grafana",
+      "Redis",
+      "Prometheus",
+      "Docker",
+      "librdkafka"
+    ],
+    "highlights": [
+      "오프라인 환경 gem 설치를 위해 InitContainer에서 gem install 후 emptyDir 공유 볼륨으로 App Container에 복사하는 3단계 볼륨 패턴을 직접 구성함",
+      "fluent-plugin-beats의 멀티프로세싱 한계(포트 증가 방식)를 분석하고, worker 대신 replicaCount 증가 + LoadBalancer 단일 엔드포인트 방식으로 수평 확장하는 아키텍처 선택 이유를 주석으로 명시함",
+      "kafka2 vs rdkafka2 플러그인 계보(ruby-kafka vs librdkafka C엔진, 접미사 _group/_2 의미)를 실무 기준으로 정리한 자체 문서 포함",
+      "멀티worker 사용 시 in_tail 단일 코어 강제 할당 필요성, worker 간 이벤트 전달 불가 제약, 파일 버퍼 경로에 worker_id 식별자 필요성 등 운영상 주의사항을 코드 주석으로 상세 기술"
+    ],
+    "user_contribution_notes": "모든 YAML 설정 파일, Dockerfile, 문서가 단일 저자에 의해 직접 작성된 것으로 보이며, 주석과 문서가 한국어로 일관되게 작성되어 있고 실무 경험에서 도출된 판단이 포함되어 있어 해당 개발자가 주된 저자임이 명확하다.",
+    "is_toy": false,
+    "truncated": true
+  }
+}

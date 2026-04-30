@@ -1,0 +1,38 @@
+{
+  "saved_at": "2026-04-30T07:23:35.541962Z",
+  "model": "global.anthropic.claude-sonnet-4-6",
+  "analysis": {
+    "name": "prom-proxy-test",
+    "html_url": "https://github.com/YunanJeong/prom-proxy-test",
+    "description": "Prometheus Proxy beyond firewall",
+    "primary_language": null,
+    "stars": 0,
+    "purpose": "방화벽 등 사설망 환경에서 Prometheus가 직접 접근할 수 없는 exporter를 prometheus-proxy/agent를 통해 모니터링할 수 있도록 구성하는 테스트 및 참고용 설정 레포지토리입니다.",
+    "key_features": [
+      "prometheus-proxy 컨테이너를 Docker Compose로 실행하여 gRPC(50051)와 HTTP(8080) 포트 노출",
+      "prometheus-agent 컨테이너를 host 네트워크 모드로 실행하여 사설망 내 exporter와 proxy 간 통신 중계",
+      "kube-prometheus-stack Helm 차트를 Prometheus 단독(only_prom.yaml)으로 설치하고 additionalScrapeConfigs로 proxy 엔드포인트 수동 연결",
+      "kube-prometheus-stack Helm 차트를 node-exporter 단독(only_exporter.yaml)으로 사설망 클러스터에 설치",
+      "node-exporter를 Docker Compose로도 host/pid 네트워크 모드로 실행하는 구성 제공"
+    ],
+    "tech_stack": [
+      "Prometheus",
+      "prometheus-proxy",
+      "prometheus-agent",
+      "node-exporter",
+      "kube-prometheus-stack",
+      "Helm",
+      "Docker Compose",
+      "Kubernetes",
+      "gRPC"
+    ],
+    "highlights": [
+      "proxy 1개에 다수 exporter를 연결할 때 metrics_path로 job을 구분하는 방식과, 포트 매핑(9101:8080 등)으로 instance를 명확히 구분하는 두 가지 접근법을 모두 문서화",
+      "only_prom.yaml과 only_exporter.yaml로 Helm 차트를 역할별로 분리 설치하여 사설망 안팎에 각각 배포하는 구조 설계",
+      "node-exporter의 hostPort 특성(DaemonSet에 적합, NodePort와의 차이)을 명시하고 Docker의 network=host와 대응시켜 설명"
+    ],
+    "user_contribution_notes": "모든 파일이 단일 저자가 직접 작성한 설정 파일 및 README로 구성되어 있으며, 외부 차트나 코드를 그대로 복사한 것이 아니라 특정 사용 시나리오에 맞게 직접 커스터마이징한 흔적이 명확합니다. 주된 저자로 판단됩니다.",
+    "is_toy": true,
+    "truncated": false
+  }
+}

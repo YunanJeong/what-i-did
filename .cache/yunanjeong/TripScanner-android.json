@@ -1,0 +1,42 @@
+{
+  "saved_at": "2026-04-30T07:29:22.084579Z",
+  "model": "global.anthropic.claude-sonnet-4-6",
+  "analysis": {
+    "name": "TripScanner-android",
+    "html_url": "https://github.com/YunanJeong/TripScanner-android",
+    "description": null,
+    "primary_language": "Java",
+    "stars": 0,
+    "purpose": "여행 동행자 매칭 Android 앱으로, 사용자가 여행 동행을 검색·생성·참여하고 상호 리뷰를 남길 수 있는 서비스의 클라이언트이다.",
+    "key_features": [
+      "Google Places Autocomplete와 날짜 범위 선택기를 조합하여 도시/날짜 조건으로 동행 여행 검색 수행",
+      "이메일/패스워드 기반 로그인 및 회원가입 처리, 인증 토큰을 SharedPreferences에 저장하여 세션 유지",
+      "내가 생성한 동행, 참여한 동행 목록을 RecyclerView 카드 형태로 표시",
+      "여행 상세 화면에서 동행 참여 신청(PUT /api/v1/trips/:id/join) 및 호스트 프로필·멤버 칩 표시",
+      "받은 리뷰 목록, 내가 쓴 리뷰 목록, 작성 대기 리뷰 목록 분리 조회 및 별점 표시",
+      "프로필 조회 및 수정(직업, 학교, 연락처, 생년월일, 국적, 자기소개 등) 지원"
+    ],
+    "tech_stack": [
+      "Java",
+      "Android SDK",
+      "RecyclerView",
+      "CardView",
+      "NavigationDrawer",
+      "Google Places API",
+      "SmoothDateRangePicker",
+      "Jackson",
+      "HttpURLConnection",
+      "SharedPreferences",
+      "AsyncTask"
+    ],
+    "highlights": [
+      "CommunicationManager 클래스에서 GET/POST/PUT/DELETE/QUERY 메서드를 직접 HttpURLConnection으로 구현하고, X-User-Email·X-User-Token 헤더로 Devise Token Auth 방식의 인증을 처리함",
+      "네비게이션 드로어 공통 로직을 BaseNaviActivity에 추상화하고 MainActivity가 이를 상속하는 계층 구조 적용",
+      "이미지 로딩을 별도의 DownloadImageTask(AsyncTask 서브클래스)로 각 Adapter 내에 인라인 정의하여 URL 비동기 다운로드 후 ImageView에 삽입",
+      "PendingReviewRecyclerAdapter의 리뷰 제출 버튼 핸들러가 UI 조작만 하고 실제 API 호출(ReviewWriteTask)을 invoke하지 않아 미완성 상태로 확인됨"
+    ],
+    "user_contribution_notes": "패키지명 com.example.yunan.tripscanner 및 모든 파일의 Created by yunan 주석으로 보아 단독 개발자로 판단됨. 30개 Java 파일 전체를 직접 작성한 주된 저자로 보임.",
+    "is_toy": false,
+    "truncated": false
+  }
+}

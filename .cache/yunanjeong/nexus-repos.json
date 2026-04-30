@@ -1,0 +1,39 @@
+{
+  "saved_at": "2026-04-30T07:23:01.141243Z",
+  "model": "global.anthropic.claude-sonnet-4-6",
+  "analysis": {
+    "name": "nexus-repos",
+    "html_url": "https://github.com/YunanJeong/nexus-repos",
+    "description": "by helm",
+    "primary_language": "Shell",
+    "stars": 1,
+    "purpose": "Sonatype Nexus Repository Manager를 Kubernetes(K3s) 환경에 Helm으로 배포하기 위한 설정 및 운영 스크립트 모음입니다. Docker 레지스트리, PyPI, APT, raw 저장소 등 다양한 사설/프록시 레포지토리 구축 방법을 정리합니다.",
+    "key_features": [
+      "K3s 및 Helm 설치 환경 자동 설정 스크립트 제공",
+      "Nexus3 Helm 차트 values 파일을 최소/기본/프로덕션 세 가지 수준으로 구성",
+      "Traefik Ingress 기반으로 nexus.wai, docker.wai 등 커스텀 도메인 라우팅 설정",
+      "Docker Registry API v2를 활용해 이미지별·태그별 용량을 멀티아키텍처 포함하여 계산하는 셸 스크립트 작성",
+      "프로덕션 설정에서 LoadBalancer 서비스 타입과 150Gi PVC, JVM 메모리 파라미터 튜닝 적용",
+      "사설 Docker 레지스트리(docker.wai, private.docker.wai) 이중 구성 지원"
+    ],
+    "tech_stack": [
+      "Sonatype Nexus3",
+      "Helm",
+      "Kubernetes",
+      "K3s",
+      "Traefik",
+      "Shell",
+      "jq",
+      "Docker Registry API v2"
+    ],
+    "highlights": [
+      "getEachSize.sh에서 단일 아키텍처와 멀티 아키텍처(manifest list) 이미지를 분기 처리하여 레이어 크기를 합산하는 로직을 직접 구현",
+      "value_production_example_set.yaml에서 OrientDB→H2 DB 마이그레이션 이슈(3.71+)와 -XX:+UseContainerSupport 전환 등 버전별 운영 상 주의사항을 주석으로 문서화",
+      "최소/기본/프로덕션 세 가지 values 파일을 분리하여 환경별 배포 시나리오를 명확히 구분",
+      "Docker 저장소 용량 관리 기능이 Nexus UI에서 미지원임을 인지하고 REST API 호출 방식으로 우회 구현"
+    ],
+    "user_contribution_notes": "단일 저자가 직접 작성한 배포 설정 및 운영 유틸리티 레포지토리로 보입니다. values 파일 내 한국어 주석과 운영 경험 기반의 트러블슈팅 메모, 커스텀 도메인 설계 등이 본인 환경에 맞게 작성되어 있어 주된 저자임이 명확합니다.",
+    "is_toy": false,
+    "truncated": false
+  }
+}

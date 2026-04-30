@@ -1,0 +1,45 @@
+{
+  "saved_at": "2026-04-30T07:23:19.246528Z",
+  "model": "global.anthropic.claude-sonnet-4-6",
+  "analysis": {
+    "name": "my-helm-charts",
+    "html_url": "https://github.com/YunanJeong/my-helm-charts",
+    "description": null,
+    "primary_language": "Java",
+    "stars": 0,
+    "purpose": "Kubernetes 환경에서 Kafka 및 Kafka Streams 앱을 배포하기 위한 커스텀 Helm 차트 모음으로, 경량 Kafka 스택(skafka)과 Kafka Streams 앱 배포 차트(kstreams)를 제공한다.",
+    "key_features": [
+      "skafka 차트로 Kafka, Kubernetes Dashboard, Kafka-UI를 단일 Helm 릴리즈로 배포",
+      "kstreams 차트로 Kafka Streams 앱 컨테이너를 Deployment로 배포하며 이미지/환경변수를 values로 주입",
+      "kafkaClientOverrides 값을 STREAMS_* 환경변수로 자동 변환하여 Kafka 클라이언트 속성 주입",
+      "initContainer를 통해 Kafka 브로커 준비 완료를 확인 후 Streams 앱 기동(readinessCheck)",
+      "Skaffold 프로파일 기반으로 개발·빌드·배포 워크플로를 통합 관리",
+      "JsonNodeSerde를 직접 구현하여 Kafka Streams 토폴로지에서 JSON 메시지를 필터·변환 처리하는 샘플 앱 포함"
+    ],
+    "tech_stack": [
+      "Helm",
+      "Kubernetes",
+      "Kafka",
+      "Kafka Streams",
+      "Kafka UI",
+      "Kubernetes Dashboard",
+      "Skaffold",
+      "Java",
+      "Maven",
+      "Docker",
+      "Bitnami Kafka Chart",
+      "SLF4J",
+      "Logback",
+      "JUnit 5"
+    ],
+    "highlights": [
+      "kstreams Deployment 템플릿에서 kafkaClientOverrides의 키를 dot→underscore 변환 및 대문자화하여 STREAMS_* 환경변수로 자동 매핑하는 로직을 Helm 템플릿 내에서 직접 구현",
+      "STREAMS_* 예약어 충돌 및 application.id·bootstrap.servers 중복 할당을 Helm 템플릿 레벨에서 fail로 방어",
+      "Kafka Streams 앱 이미지 자체를 Helm value로 취급하는 설계 철학을 명시하고 Skaffold 프로파일로 이미지 빌드와 Helm 배포를 통합",
+      "JsonNodeSerde를 Jackson ObjectMapper 기반으로 직접 구현하여 Kafka Streams의 Serde 인터페이스를 충족"
+    ],
+    "user_contribution_notes": "파일 구조, Helm 템플릿 로직, Java 샘플 앱, Skaffold 설정 등 전 영역이 동일 개발자 스타일로 작성되어 있으며 외부 기여 흔적 없이 단독 저작된 것으로 보인다.",
+    "is_toy": false,
+    "truncated": false
+  }
+}

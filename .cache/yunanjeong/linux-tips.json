@@ -1,0 +1,43 @@
+{
+  "saved_at": "2026-04-30T07:17:50.562095Z",
+  "model": "global.anthropic.claude-sonnet-4-6",
+  "analysis": {
+    "name": "linux-tips",
+    "html_url": "https://github.com/YunanJeong/linux-tips",
+    "description": "Linux Tips mainly for Ubuntu/Debian, WSL2",
+    "primary_language": "Shell",
+    "stars": 2,
+    "purpose": "Ubuntu/Debian 및 WSL2 환경에서 반복적으로 필요한 Linux 운영 지식을 주제별로 정리한 개인 기술 노트 레포지토리입니다.",
+    "key_features": [
+      "apt/dpkg를 이용한 .deb 패키지 오프라인 추출 스크립트 작성 (apt-cache, apt-rdepends 등 세 가지 방식 비교)",
+      "Confluent Schema Registry 및 Confluent Community 패키지의 오프라인 설치를 위한 deb 파일 추출 자동화",
+      "vim 설정 파일(.vimrc) 커스터마이징 및 root/일반 계정 모두 적용하는 방법 문서화",
+      "file descriptor 한도 설정, systemd 서비스 파일 연동 등 운영 환경별 설정 방법 기록",
+      "sudo tee를 활용한 root 권한 필요 경로 파일 쓰기, /tmp 경유 방법 등 파일 I/O 패턴 정리",
+      "DBeaver 오프라인 환경 설치 및 JDBC 드라이버 수동 등록 방법 정리"
+    ],
+    "tech_stack": [
+      "Shell",
+      "Ubuntu",
+      "Debian",
+      "WSL2",
+      "apt",
+      "dpkg",
+      "vim",
+      "systemd",
+      "Docker",
+      "DBeaver",
+      "Confluent Platform",
+      "ncftp"
+    ],
+    "highlights": [
+      "dpkg-extraction 디렉토리에 apt-cache, apt-cache_depends, apt-rdepends 세 가지 방식을 장단점과 함께 비교 정리하여 실무 오프라인 환경 대응 노하우를 체계화함",
+      "Confluent Schema Registry/Community 패키지에 대해 레포지토리 등록부터 apt-rdepends를 이용한 confluent 관련 의존성만 필터링하여 deb 추출하는 실용적인 스크립트 포함",
+      "sudo가 리다이렉션(>)에 적용되지 않는 문제를 /tmp 경유 mv 방식과 sudo tee 방식으로 각각 해결하는 구체적인 예시 제공",
+      "vimrc 빠른 설치 스크립트에서 자신의 레포지토리 raw URL을 wget/curl로 참조하는 방식으로 설정 재사용 자동화"
+    ],
+    "user_contribution_notes": "파일 구조, 내용, 스크립트 모두 단일 저자가 직접 작성한 흔적이 명확하며 레포지토리 내 자신의 raw URL 참조 등으로 주된 저자임이 확인됨. 외부 기여 흔적 없음.",
+    "is_toy": false,
+    "truncated": false
+  }
+}

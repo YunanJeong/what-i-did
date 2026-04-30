@@ -1,0 +1,38 @@
+{
+  "saved_at": "2026-04-30T07:20:12.616915Z",
+  "model": "global.anthropic.claude-sonnet-4-6",
+  "analysis": {
+    "name": "forwarders",
+    "html_url": "https://github.com/YunanJeong/forwarders",
+    "description": "fluentbit, filbeat 등등 테스트 및 배포용 레포지토리.  그 때 그 때 설정하다보니까 기억이 잘 안남. 템플릿도 잡아놓고 특히 쿠버네티스용 차트 설정으로도 좀 만들어 놔야지",
+    "primary_language": "Shell",
+    "stars": 0,
+    "purpose": "Fluent Bit 및 Filebeat(Elastic Beats)의 설정 템플릿과 운영 지식을 정리한 로그 포워더 구성 레포지토리로, 리눅스/윈도우 네이티브 환경 및 쿠버네티스 환경에서의 배포·운영을 목적으로 한다.",
+    "key_features": [
+      "Filebeat를 Ubuntu에 설치하고 systemd 서비스로 등록하는 셸 스크립트 제공",
+      "Filebeat → Kafka 출력 설정 파일(beat2kafka.yml)을 filestream input, fingerprint 파일 식별, gzip 압축, harvester_limit 등 프로덕션 옵션을 포함하여 구성",
+      "Fluent Bit 네이티브 설치 및 헬름 차트(bitnami/fluent-bit) 배포 방법을 문서화",
+      "Fluent Bit 메모리 버퍼·파일 버퍼 동작 원리(storage.type, Mem_Buf_Limit, storage.max_chunks_up, storage.total_limit_size 등)를 체계적으로 분석하여 정리",
+      "파일 고유성 식별 방식(inode+DeviceId vs. fingerprint)과 파일 로테이션 패턴(SequenceNumber rename/copy-truncate, DateSuffix)에 따른 로그 중복·누락 시나리오 문서화",
+      "bitnami/fluent-bit Helm values.yaml 전체 파라미터 구조(daemonset, 보안 컨텍스트, HPA/VPA, ServiceMonitor 등)를 템플릿으로 보관"
+    ],
+    "tech_stack": [
+      "Fluent Bit",
+      "Filebeat",
+      "Apache Kafka",
+      "Helm",
+      "Kubernetes",
+      "Shell",
+      "YAML"
+    ],
+    "highlights": [
+      "fluent-bit의 메모리 버퍼가 항상 primary로 동작하고 파일버퍼가 secondary로 추가되는 구조를 [INPUT]/[OUTPUT]/[SERVICE] 섹션 별로 옵션이 분산된 이유와 함께 자체 분석하여 문서화한 점이 단순 공식문서 번역 이상의 깊이를 보임",
+      "Filebeat fingerprint 방식의 한계(1024바이트 미만 파일 누락, 실행 중 offset 변경 불가)와 inode 재사용 문제를 비교하여 실무 트러블슈팅 관점에서 정리",
+      "beat2kafka.yml에서 harvester_limit, ignore_older, close.on_state_change.inactive 등 과부하 방지 옵션을 실무 권장값과 주의사항을 직접 주석으로 기술",
+      "fluent-bit과 Filebeat의 Fluentd 연동 시 멀티프로세싱 지원 방식 차이(in-forward vs. beats 플러그인 멀티포트 방식)를 실제 운영 경험 기반으로 비교 정리"
+    ],
+    "user_contribution_notes": "README 및 설정 파일의 한국어 주석, 직접 테스트 기반의 분석 내용, 실무 팁이 일관되게 작성되어 있어 해당 개발자가 단독 작성한 레포지토리로 판단됨. fluent-bit/values.yaml은 bitnami 공식 차트의 원본 values 파일을 그대로 보관한 것이나, 이를 참조용으로 포함한 것으로 보임.",
+    "is_toy": false,
+    "truncated": false
+  }
+}

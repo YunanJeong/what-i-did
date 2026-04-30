@@ -1,0 +1,39 @@
+{
+  "saved_at": "2026-04-30T07:27:08.615728Z",
+  "model": "global.anthropic.claude-sonnet-4-6",
+  "analysis": {
+    "name": "terraform-test",
+    "html_url": "https://github.com/YunanJeong/terraform-test",
+    "description": "AWS IaC Modules, UseCases, Test",
+    "primary_language": "HCL",
+    "stars": 2,
+    "purpose": "AWS EC2 인프라를 Terraform으로 프로비저닝하기 위한 재사용 가능한 HCL 모듈 및 사용 예제 모음으로, Ubuntu 및 Windows SQL Server 인스턴스 생성·설정을 자동화한다.",
+    "key_features": [
+      "Ubuntu 단일/다중 EC2 인스턴스를 모듈로 생성하고 SSH remote-exec로 초기 명령어 실행",
+      "Windows Server(SQL Server) EC2 인스턴스를 WinRM 연결로 프로비저닝하고 init_db.sql을 원격 실행하여 DB 초기화",
+      "보안그룹을 용도별(기본, DB 포트, 인스턴스 간 상호 통신, WinRM/RDP)로 모듈화하여 재사용",
+      "이미 실행 중인 EC2 인스턴스에 동적으로 보안그룹을 추가하는 register_sgroup 모듈 구현",
+      "null_resource와 depends_on을 활용해 remote-exec 실행 순서(두 번째 원격 명령 블록) 제어",
+      "template_file로 SQL 스크립트에 DB 사용자·패스워드·포트 변수를 주입하여 파일 provisioner로 전송"
+    ],
+    "tech_stack": [
+      "Terraform",
+      "HCL",
+      "AWS EC2",
+      "AWS Security Groups",
+      "WinRM",
+      "SQL Server (MSSQL)",
+      "PowerShell",
+      "T-SQL"
+    ],
+    "highlights": [
+      "multi_ubuntu 모듈에서 count 기반 반복 생성 후 각 인스턴스의 public/private IP를 동적으로 수집해 인스턴스 간 상호 허용 보안그룹 cidr_blocks를 for 표현식으로 자동 구성",
+      "AWS EC2 Windows에서 WinRM이 기본 비활성화된 문제를 user_data PowerShell 스크립트로 winrm quickconfig를 실행해 해결하고, rsadecrypt로 password_data를 복호화하는 connection 방식 적용",
+      "기존 실행 중인 GitLab 인스턴스에 신규 인스턴스 IP를 허용하는 보안그룹을 동적으로 추가한 뒤 null_resource의 depends_on으로 Git clone 명령 순서를 보장하는 의존성 체인 설계",
+      "setup-infra-examples 디렉터리에 0~3번 예제를 단계별로 구성해 모듈 조합 방식을 점진적으로 시연"
+    ],
+    "user_contribution_notes": "모든 모듈과 예제 파일이 단일 저자의 일관된 스타일(한국어 주석, 동일한 구조)로 작성되어 있으며, README와 코드 내용이 서로 일치한다. 전체 레포지토리의 주된 저자로 판단된다.",
+    "is_toy": true,
+    "truncated": false
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "saved_at": "2026-04-30T07:25:10.055962Z",
+  "model": "global.anthropic.claude-sonnet-4-6",
+  "analysis": {
+    "name": "ftp-to-s3",
+    "html_url": "https://github.com/YunanJeong/ftp-to-s3",
+    "description": null,
+    "primary_language": "Python",
+    "stars": 0,
+    "purpose": "FTP 서버에서 전일 날짜에 해당하는 파일을 다운로드하여 AWS S3로 업로드하는 데이터 파이프라인 스크립트입니다. 순수 Python 버전, Snakemake 기반 버전 등 여러 구현 방식을 포함합니다.",
+    "key_features": [
+      "전일 날짜 디렉토리를 자동 계산하여 FTP 서버에서 파일 다운로드",
+      "ncftpget CLI를 사용한 FTP 재귀 디렉토리 다운로드",
+      "AWS CLI(aws s3 cp)를 이용한 로컬→S3 업로드 및 업로드 완료 후 로컬 파일 삭제",
+      "ftplib을 이용한 FTP 디렉토리 재귀 탐색 유틸리티 구현(서브디렉토리 포함 전체 파일 경로 반환)",
+      "YAML 설정 파일을 통한 FTP 접속 정보 및 경로 설정 관리",
+      "crontab을 이용한 매일 새벽 1시 자동 스케줄링"
+    ],
+    "tech_stack": [
+      "Python",
+      "ftplib",
+      "ncftpget",
+      "AWS CLI",
+      "Snakemake",
+      "PyYAML",
+      "crontab"
+    ],
+    "highlights": [
+      "boto3 대신 AWS CLI를 사용하고, ftplib 대신 ncftpget을 사용한 이유를 명시적으로 기술(성능 및 재귀 다운로드 편의성)",
+      "ftplib 기반 util.py에서 cwd() 시도로 디렉토리 여부를 판별하는 방식으로 is_directory 함수 구현",
+      "legacy/python, legacy/snakemake, 최신 Snakemake 버전으로 구현 방식의 진화 과정이 레포 구조에 명시적으로 반영됨",
+      "Snakemake의 DAG 기반 멀티코어 병렬 처리(-j 옵션)를 파일 단위 파이프라인에 적용"
+    ],
+    "user_contribution_notes": "파일 전체가 단일 개발자의 직접 작성으로 보이며, 주석·TODO·메모 등이 한국어로 작성되어 있어 본인이 주된 저자임이 명확합니다. 구현 방식을 단계적으로 발전시킨 흔적(legacy 디렉토리 구조)도 직접 개발 이력을 뒷받침합니다.",
+    "is_toy": false,
+    "truncated": false
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "saved_at": "2026-04-30T07:21:26.015158Z",
+  "model": "global.anthropic.claude-sonnet-4-6",
+  "analysis": {
+    "name": "eks-deploy",
+    "html_url": "https://github.com/YunanJeong/eks-deploy",
+    "description": "eks-deploy-terraform",
+    "primary_language": "HCL",
+    "stars": 0,
+    "purpose": "Terraform을 사용하여 AWS 환경에 EKS 클러스터와 전용 VPC 네트워크 인프라를 자동으로 프로비저닝하는 IaC 프로젝트입니다.",
+    "key_features": [
+      "AWS 공식 Terraform 모듈을 사용하여 EKS 클러스터 및 Managed Node Group 배포",
+      "EKS 전용 VPC, 서브넷(퍼블릭/프라이빗), NAT Gateway, 인터넷 게이트웨이 신규 생성",
+      "워커 노드를 프라이빗 서브넷에 배치하여 외부 직접 접근 차단",
+      "ALB/NLB를 위한 퍼블릭 서브넷과 내부 통신용 프라이빗 서브넷 분리 구성",
+      "outputs.tf를 통해 생성된 리소스 주요 정보 출력"
+    ],
+    "tech_stack": [
+      "Terraform",
+      "HCL",
+      "AWS EKS",
+      "AWS VPC",
+      "AWS IAM",
+      "Kubernetes"
+    ],
+    "highlights": [
+      "기존 네트워크 리소스를 재사용하지 않고 EKS 전용 격리 환경을 완전 신규 생성하는 설계 원칙 채택",
+      "비용 절감을 위해 single_nat_gateway=true로 설정하되 운영환경 전환 시 변경 권고사항을 명시",
+      "params.tf로 자주 변경되는 변수(리전, 클러스터명, 노드 사양)를 별도 파일로 분리하여 운영 편의성 확보"
+    ],
+    "user_contribution_notes": "README만 존재하고 실제 .tf 파일들(providers.tf, params.tf, vpc.tf, eks.tf, outputs.tf)이 파일 트리에 포함되어 있지 않아 코드 수준의 기여도 확인이 불가능합니다. README 기술 내용은 상세하나 실제 구현 파일 부재로 독자적 코드 작성 여부를 판단하기 어렵습니다.",
+    "is_toy": true,
+    "truncated": false
+  }
+}

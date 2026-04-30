@@ -1,0 +1,26 @@
+{
+  "saved_at": "2026-04-30T07:25:16.844944Z",
+  "model": "global.anthropic.claude-sonnet-4-6",
+  "analysis": {
+    "name": "flink-test",
+    "html_url": "https://github.com/YunanJeong/flink-test",
+    "description": null,
+    "primary_language": null,
+    "stars": 0,
+    "purpose": "Apache Flink를 탐색하고 Kafka Connect/Streams와의 비교를 정리한 메모 수준의 레포지토리로, 실질적인 코드나 구현물은 없음.",
+    "key_features": [
+      "Flink와 Kafka Connect/Streams 간의 역할 비교 메모 작성"
+    ],
+    "tech_stack": [
+      "Apache Flink",
+      "Apache Kafka"
+    ],
+    "highlights": [
+      "README 외 실제 코드 파일이 전혀 존재하지 않음",
+      "기술 비교 메모만 있는 미완성 또는 초기 탐색 단계의 레포지토리"
+    ],
+    "user_contribution_notes": "README.md 단일 파일만 존재하며, 내용도 기술 비교 메모 수준임. 실질적인 코드 기여가 없어 저자 판단이 불가능함.",
+    "is_toy": true,
+    "truncated": false
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "saved_at": "2026-04-30T07:29:52.712400Z",
+  "model": "global.anthropic.claude-sonnet-4-6",
+  "analysis": {
+    "name": "PChachu_server",
+    "html_url": "https://github.com/YunanJeong/PChachu_server",
+    "description": "DB Final Project_Server Side",
+    "primary_language": "JavaScript",
+    "stars": 0,
+    "purpose": "PC방(PC카페) 정보를 조회하는 REST API 서버로, 데이터베이스 수업의 최종 프로젝트 서버 사이드 구현체입니다.",
+    "key_features": [
+      "주소 조건(1~3단계)에 따라 PC카페 목록을 필터링하여 조회",
+      "PC카페 ID로 상세 정보(사양, 좌석, 요금, 주소, 프랜차이즈) 조회",
+      "특정 PC카페의 이벤트 정보(이벤트명, 경품) 조회",
+      "특정 PC카페의 음식 메뉴 및 가격 조회",
+      "MySQL 커넥션 풀을 통한 데이터베이스 연결 관리"
+    ],
+    "tech_stack": [
+      "Node.js",
+      "Express",
+      "MySQL",
+      "body-parser",
+      "formidable",
+      "Jade"
+    ],
+    "highlights": [
+      "주소 필터링 쿼리를 null 여부에 따라 3단계(address1만, address1+2, address1+2+3)로 분기 처리하는 조건부 SQL 생성 로직",
+      "MySQL 커넥션 풀(connectionLimit: 100)을 db.js에 싱글턴 모듈로 분리하여 앱 전반에서 공유",
+      "db.js에 루트 비밀번호가 평문으로 하드코딩되어 있는 보안 취약점 존재",
+      "주석 처리된 member, keep 라우트가 남아 있어 원래 더 넓은 기능 범위가 계획되었음을 시사"
+    ],
+    "user_contribution_notes": "파일 전체가 단일 개발자의 스타일로 작성되어 있으며, 라우트 로직과 DB 모듈 구조를 직접 설계한 주된 저자로 보입니다.",
+    "is_toy": true,
+    "truncated": false
+  }
+}

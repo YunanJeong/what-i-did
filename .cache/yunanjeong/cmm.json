@@ -1,0 +1,42 @@
+{
+  "saved_at": "2026-04-30T07:24:34.275881Z",
+  "model": "global.anthropic.claude-sonnet-4-6",
+  "analysis": {
+    "name": "cmm",
+    "html_url": "https://github.com/YunanJeong/cmm",
+    "description": "Centralized Monitoring for Multi-clusters",
+    "primary_language": null,
+    "stars": 2,
+    "purpose": "kube-prometheus-stack 헬름 차트의 values를 커스터마이징하여 여러 쿠버네티스 클러스터를 중앙 Grafana에서 통합 모니터링하는 구성을 제공한다. 개별 클러스터에는 Prometheus와 node-exporter를 배포하고, 중앙 노드에는 Grafana만 배포하여 각 클러스터의 Prometheus를 datasource로 참조한다.",
+    "key_features": [
+      "각 클러스터용 Helm values 파일(each_cluster.yaml)로 Prometheus + node-exporter daemonset 배포 구성",
+      "중앙 모니터링 호스트용 Helm values 파일(central_monitor.yaml)로 Grafana only 배포 구성",
+      "Grafana additionalDataSources를 통해 EKS, kr-rag, kr-mum 등 다수의 원격 Prometheus 및 Loki 엔드포인트를 datasource로 등록",
+      "GitHub Raw URL을 통한 커스텀 대시보드 JSON 프로비저닝 및 Grafana.com gnetId 기반 대시보드 자동 임포트",
+      "Grafana alerting 프로비저닝: 메모리/스토리지 임계값(85%) 초과 노드 감지 PromQL 룰 및 Email·MS Teams·LINE·AWS SNS 알림 채널 설정",
+      "envsubst를 활용한 환경변수 기반 민감정보(admin 패스워드, SMTP, webhook URL 등) 주입"
+    ],
+    "tech_stack": [
+      "Helm",
+      "kube-prometheus-stack",
+      "Prometheus",
+      "Grafana",
+      "node-exporter",
+      "Prometheus Operator",
+      "Loki",
+      "Kubernetes",
+      "Traefik",
+      "AWS SNS",
+      "SMTP"
+    ],
+    "highlights": [
+      "커스텀 헬름 차트나 템플릿 수정 없이 순수 values 파일 오버라이드만으로 멀티클러스터 중앙 모니터링 아키텍처를 구현한 점이 설계 원칙으로 명시되어 있으며 실제 파일 구성에서도 확인됨",
+      "serviceMonitorSelectorNilUsesHelmValues: false 설정으로 클러스터 내 모든 ServiceMonitor를 수집 대상으로 확장하여 타 헬름 차트의 ServiceMonitor와 자동 연동 가능하게 구성",
+      "Grafana persistence를 statefulset 타입으로 설정하여 helm uninstall 후에도 데이터 보존이 가능하도록 처리한 점",
+      "WSL·도커데스크탑 등 비표준 환경을 위한 hostRootFsMount 비활성화 옵션과 로컬 테스트용 별도 values 파일(wsl-localtest-grafana.yaml)을 분리하여 관리"
+    ],
+    "user_contribution_notes": "reference 디렉토리의 파일들은 업스트림 헬름 차트의 기본 values를 그대로 보관한 참고용 파일이며, 실질적인 기여는 each_cluster.yaml과 central_monitor.yaml의 커스터마이징 및 대시보드 프로비저닝·알림 설정 구성에 집중되어 있다. 해당 개발자가 단독 저자로 보인다.",
+    "is_toy": false,
+    "truncated": true
+  }
+}

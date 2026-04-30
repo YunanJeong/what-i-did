@@ -1,0 +1,36 @@
+{
+  "saved_at": "2026-04-30T07:27:58.871845Z",
+  "model": "global.anthropic.claude-sonnet-4-6",
+  "analysis": {
+    "name": "devenv-windows-java-intellij-git",
+    "html_url": "https://github.com/YunanJeong/devenv-windows-java-intellij-git",
+    "description": null,
+    "primary_language": null,
+    "stars": 0,
+    "purpose": "Windows 환경에서 IntelliJ, Java, Git(WSL2 포함)을 연동하는 개발환경 설정 방법을 정리한 노트 레포지토리입니다.",
+    "key_features": [
+      "Windows에서 IntelliJ + Git 연동 설정 방법 문서화",
+      "WSL2 경로를 IntelliJ 프로젝트로 오픈하는 방법 안내",
+      "WSL2+IntelliJ 조합에서 Gradle 미지원(Maven만 가능) 이슈 기록",
+      "IntelliJ에서 global/local git 설정 동작 차이 정리",
+      "Git Bash 미설치 시 WSL2 .gitconfig에 정보가 기록되는 부작용 문서화"
+    ],
+    "tech_stack": [
+      "Java",
+      "IntelliJ IDEA",
+      "Gradle",
+      "JUnit Jupiter",
+      "Git",
+      "WSL2",
+      "Windows"
+    ],
+    "highlights": [
+      "Git Bash 미설치 상태에서 IntelliJ가 WSL2의 .gitconfig를 수정하며 IncludeIf 구문을 무시하는 비직관적 동작을 직접 확인하여 기록",
+      "WSL2+IntelliJ 조합에서 Gradle이 오류를 일으키고 Maven만 정상 동작한다는 실험적 트러블슈팅 결과 포함",
+      "build.gradle은 최소한의 Java+JUnit 기본 템플릿으로, 설명을 위한 예시 프로젝트로만 존재"
+    ],
+    "user_contribution_notes": "README 전체와 예시 build.gradle이 단일 저자에 의해 작성된 것으로 보이며, 주요 내용은 개인 트러블슈팅 경험을 정리한 설정 노트입니다.",
+    "is_toy": true,
+    "truncated": false
+  }
+}

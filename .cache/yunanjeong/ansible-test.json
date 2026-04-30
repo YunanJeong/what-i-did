@@ -1,0 +1,29 @@
+{
+  "saved_at": "2026-04-30T07:28:14.574357Z",
+  "model": "global.anthropic.claude-sonnet-4-6",
+  "analysis": {
+    "name": "ansible-test",
+    "html_url": "https://github.com/YunanJeong/ansible-test",
+    "description": null,
+    "primary_language": null,
+    "stars": 0,
+    "purpose": "Ansible 학습 및 테스트를 위한 개인 노트 레포지토리로, 설치 방법과 기본 개념을 정리한 문서 모음이다.",
+    "key_features": [
+      "OS별(Python/Ubuntu/CentOS/MacOS) Ansible 설치 명령어 정리",
+      "Control Node, Managed Node, Inventory 등 핵심 용어 및 개념 설명",
+      "Ansible 초기 셋업 시 사전 준비 작업 안내",
+      "외부 튜토리얼 및 참고 링크 수집"
+    ],
+    "tech_stack": [
+      "Ansible"
+    ],
+    "highlights": [
+      "실제 플레이북, 인벤토리 파일 등 코드 파일 없이 README.md 단일 문서만 존재",
+      "WSL(Control) → EC2 Ubuntu(Managed) 환경을 직접 테스트한 경험을 간략히 언급",
+      "별도 정리 문서(0_ready.md)를 링크로 참조하나 해당 파일은 레포에 포함되지 않음"
+    ],
+    "user_contribution_notes": "README.md 하나만 존재하는 개인 학습 메모 수준의 레포로, 저자가 직접 작성한 것으로 보이나 실질적인 코드 기여는 없음.",
+    "is_toy": true,
+    "truncated": false
+  }
+}

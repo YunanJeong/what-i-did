@@ -1,0 +1,38 @@
+{
+  "saved_at": "2026-04-30T07:23:51.807566Z",
+  "model": "global.anthropic.claude-sonnet-4-6",
+  "analysis": {
+    "name": "kafka-jdbc-connector-control",
+    "html_url": "https://github.com/YunanJeong/kafka-jdbc-connector-control",
+    "description": "db구조는 제각각. 백의DB,천의Table에서 데이터를 편하게 긁어오자.",
+    "primary_language": "Smarty",
+    "stars": 0,
+    "purpose": "다수의 DB와 테이블에 대해 Kafka JDBC Source Connector를 일괄 등록하는 자동화 도구로, DB×테이블 조합마다 커넥터를 Kafka Connect REST API에 등록한다.",
+    "key_features": [
+      "환경변수로 주입된 DB 목록과 테이블 목록을 순회하며 커넥터 설정을 자동 생성",
+      "Python의 string.Template을 이용해 커넥터 JSON 설정을 동적으로 렌더링",
+      "Kafka Connect REST API(PUT /connectors/{name}/config)를 호출하여 커넥터 등록",
+      "Helm Chart(Kubernetes Job)로 배포하여 일회성 일괄 등록 작업 실행",
+      "values.yaml에서 DB 목록, 테이블 목록, 커넥터 템플릿 JSON을 선언적으로 관리",
+      "JDBC query 모드 기반 커넥터 템플릿에 DLQ, topic.creation, poll.interval 등 운영 설정 포함"
+    ],
+    "tech_stack": [
+      "Python",
+      "requests",
+      "Kafka Connect",
+      "Confluent JDBC Source Connector",
+      "Helm",
+      "Kubernetes",
+      "Docker"
+    ],
+    "highlights": [
+      "DB 목록과 테이블 목록의 카르테시안 곱으로 커넥터 이름(db_host_table)을 생성하는 단순하지만 확장성 있는 루프 구조",
+      "TEMPLATE_JSON 환경변수로 커넥터 설정 전체를 문자열 템플릿으로 주입받아, Helm values.yaml 한 곳에서 커넥터 스펙을 완전히 제어 가능",
+      "Helm values.env 블록을 range로 일괄 환경변수화하여 임의의 추가 환경변수를 코드 변경 없이 컨테이너에 전달하는 구조",
+      "query 모드에서 CONCAT(timestamp_col, LPAD(id,6,'0'))으로 복합 증분 키(newid)를 생성하는 커스텀 쿼리 예시 포함"
+    ],
+    "user_contribution_notes": "파일 수가 적고 규모가 작지만, register.py 로직과 Helm Chart 구조 모두 본 저자가 직접 작성한 것으로 보인다. 보일러플레이트 Helm scaffold 위에 실제 운영 요구사항(대량 커넥터 등록 자동화)을 반영한 고유 구현이 존재한다.",
+    "is_toy": false,
+    "truncated": false
+  }
+}

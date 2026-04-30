@@ -1,0 +1,44 @@
+{
+  "saved_at": "2026-04-30T07:20:51.833937Z",
+  "model": "global.anthropic.claude-sonnet-4-6",
+  "analysis": {
+    "name": "simple-kafka-deploy",
+    "html_url": "https://github.com/YunanJeong/simple-kafka-deploy",
+    "description": "K8s-based Kafka with UI by Helm Chart",
+    "primary_language": "Dockerfile",
+    "stars": 0,
+    "purpose": "Kubernetes 환경에서 Kafka 클러스터를 Helm Chart로 간편하게 배포하기 위한 skafka 차트 및 관련 도구 모음으로, Kafka 브로커, Kafka Connect, Kafka UI, Kubernetes Dashboard를 통합 배포한다.",
+    "key_features": [
+      "1노드/3노드 HA 등 다양한 배포 시나리오별 커스텀 values 파일 제공 및 Helm override 방식으로 배포 설정",
+      "KRaft 모드 기반 Kafka 클러스터 구성(Zookeeper 없이 controller combined node 운영)",
+      "autoDiscovery 활성화/비활성화에 따른 NodePort advertised.listener 자동 등록 지원",
+      "JDK 버전별(JDK17/JDK11) Kafka Connect 커스텀 Docker 이미지 빌드 예시 제공(multi-stage build 포함)",
+      "JMX Exporter + ServiceMonitor 설정을 포함한 Prometheus 메트릭 수집 옵션 구성",
+      "멀티노드 환경용 수동 PV/PVC 사전생성 및 StatefulSet PVC명 매핑 방법 문서화"
+    ],
+    "tech_stack": [
+      "Kubernetes",
+      "Helm",
+      "Apache Kafka",
+      "Kafka Connect",
+      "Kafka UI (Kafbat)",
+      "Kubernetes Dashboard",
+      "Bitnami Kafka Helm Chart",
+      "Confluent Platform (cp-kafka-connect)",
+      "JMX Exporter",
+      "Prometheus",
+      "Docker",
+      "K3s",
+      "Traefik"
+    ],
+    "highlights": [
+      "bitnami/kafka 차트를 subchart로 래핑한 skafka 상위 차트를 직접 작성하여, autoDiscovery/externalAccess/NetworkPolicy 등 복잡한 K8s Kafka 네트워크 설정을 시나리오별 values 파일로 추상화함",
+      "connect-image-jdk11-kfk3 Dockerfile에서 Alpine 기반 fetch 스테이지로 Temurin JDK11을 가져와 bitnami/kafka 이미지의 기본 JDK17 경로를 symlink로 교체하는 multi-stage 방식을 채택",
+      "K8s 기반 Kafka 외부 접근 시 LoadBalancer→NodePort→advertised.listener 2단계 통신 흐름을 값 파일 주석으로 상세 문서화하고, autoDiscovery ON/OFF 케이스별 동작 차이를 명시적으로 구분",
+      "kafka-connect-s3의 커스텀 Partitioner JAR(topicless-timebasedpartitioner)을 initContainer에서 wget으로 직접 설치하는 방식으로 오프라인/온라인 환경 모두 대응"
+    ],
+    "user_contribution_notes": "skafka/Chart.yaml, skafka/values.yaml, values/ 하위 시나리오별 YAML, Dockerfile 2종, PVC 매니페스트 등 핵심 파일이 모두 직접 작성된 것으로 보이며, reference/ 디렉토리의 bitnami 기본값 파일은 참고 목적으로만 포함되어 있다. 단일 저자가 주도적으로 구성한 프로젝트로 판단된다.",
+    "is_toy": false,
+    "truncated": true
+  }
+}
