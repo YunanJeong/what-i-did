@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-04-30T07:18:09.410168Z",
+  "saved_at": "2026-05-06T05:49:23.426970Z",
   "model": "global.anthropic.claude-sonnet-4-6",
   "analysis": {
     "name": "python-tips",
@@ -7,13 +7,14 @@
     "description": "python example, skill, and practice",
     "primary_language": "Python",
     "stars": 0,
-    "purpose": "Python 개발 실무에 유용한 예제와 팁을 주제별로 정리한 개인 학습/참고용 레포지토리로, logging, 메일 전송, 단위 테스트, uv 패키지 관리 등 실용적인 코드 예제를 포함한다.",
+    "purpose": "Python 개발 시 자주 마주치는 주제들(로깅, 메일 전송, 테스트, 패키지 관리 등)에 대한 실용적인 예제와 사용 패턴을 정리한 레퍼런스 모음 레포지토리입니다.",
     "key_features": [
-      "Python logging 모듈을 활용한 콘솔/파일 핸들러 설정 및 MS Teams Webhook 알림 커스텀 핸들러 구현",
-      "smtplib 기반 SMTP 메일 전송 클래스(SmtpMailer) 작성 및 cron 환경변수 연동 스크립트 구성",
-      "pytest와 unittest의 fixture/setUp-tearDown 전후처리 비교 예제 작성",
-      "uv 패키지 관리 도구 사용법 정리 및 PEP 723 인라인 스크립트 의존성 예제 구현",
-      "pyodbc vs pymssql SQL Server 연결 방식 비교 정리"
+      "pytest와 unittest의 fixture/setUp 패턴을 동일 대상 함수에 대해 나란히 구현하여 두 프레임워크를 비교 가능하게 구성",
+      "커스텀 logging.StreamHandler를 상속한 AlertHandler를 작성해 WARNING 이상 로그 발생 시 MS Teams Webhook으로 자동 알림 전송",
+      "SMTP 메일 전송 로직을 SmtpMailer 클래스로 추상화하고 환경변수로 자격증명을 분리하여 cron 스케줄 실행에 연동",
+      "PEP 723 인라인 스크립트 의존성 선언 방식을 활용해 pyproject.toml 없이 단일 파일에서 외부 패키지를 격리 실행하는 예제 구현",
+      "uv의 핵심 워크플로(프로젝트 생성, 버전 관리, 전역 툴, 기존 프로젝트 마이그레이션)를 단계별로 정리한 실용 가이드 작성",
+      "pyodbc와 pymssql의 SQL Server 연결 방식 차이 및 자동화 적합성을 실무 관점에서 비교 정리"
     ],
     "tech_stack": [
       "Python",
@@ -23,19 +24,17 @@
       "logging",
       "pymsteams",
       "httpx",
-      "uv",
-      "pyodbc",
-      "pymssql",
-      "rich"
+      "rich",
+      "uv"
     ],
     "highlights": [
-      "logging.StreamHandler를 상속한 AlertHandler 커스텀 클래스를 구현해 WARNING 이상 로그 발생 시 MS Teams Webhook으로 자동 알림을 전송하는 구조 적용",
-      "SmtpMailer 클래스에서 To/Cc 수신자를 콤마 구분 문자열로 받아 중복 제거 후 실제 발신 처리하는 로직 구현",
-      "uv/inline_script.py에서 PEP 723 표준 포맷의 인라인 의존성 선언을 실제 동작 예제로 작성",
-      "cron 환경에서 source 대신 POSIX 표준 dot(.)을 사용해 환경변수를 로드하는 쉘 스크립트 패턴 적용"
+      "logging 핸들러를 StreamHandler 서브클래싱으로 확장해 Teams Webhook 알림을 로그 레벨 기반으로 트리거하는 구조를 직접 구현했으며, logger 레벨과 handler 레벨의 우선순위 관계를 코드 주석으로 명확히 기술",
+      "SmtpMailer 클래스에서 To 헤더 표시용 문자열과 실제 sendmail 수신자 리스트를 분리하고, CC 포함 시 중복 주소를 set으로 제거하는 처리를 포함",
+      "cron 환경에서 source 대신 POSIX 표준 dot(.)을 사용해 환경변수를 로드하고 로그 파일명에 연월을 동적으로 삽입하는 쉘 스크립트 구성",
+      "pytest fixture의 scope 옵션(function/module/session)과 yield 기반 전후처리를 코드와 docstring으로 함께 설명하여 학습 참조용으로 활용하기 좋은 구성"
     ],
-    "user_contribution_notes": "모든 코드가 단일 저자에 의해 직접 작성된 것으로 보이며, 각 예제에 한국어 주석과 설명이 일관되게 포함되어 있어 개인 학습 및 참고 목적의 저장소임을 확인할 수 있다.",
-    "is_toy": true,
+    "user_contribution_notes": "",
+    "is_toy": false,
     "truncated": false
   }
 }

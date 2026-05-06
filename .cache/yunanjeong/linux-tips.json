@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-04-30T07:17:50.562095Z",
+  "saved_at": "2026-05-06T05:49:04.199174Z",
   "model": "global.anthropic.claude-sonnet-4-6",
   "analysis": {
     "name": "linux-tips",
@@ -7,36 +7,35 @@
     "description": "Linux Tips mainly for Ubuntu/Debian, WSL2",
     "primary_language": "Shell",
     "stars": 2,
-    "purpose": "Ubuntu/Debian 및 WSL2 환경에서 반복적으로 필요한 Linux 운영 지식을 주제별로 정리한 개인 기술 노트 레포지토리입니다.",
+    "purpose": "Ubuntu/Debian 및 WSL2 환경에서 반복적으로 필요한 Linux 운영 지식을 주제별로 정리한 개인 참고 문서 저장소입니다. 파일 시스템, 패키지 관리, 권한 설정, 백그라운드 실행 등 실무에서 자주 마주치는 상황에 대한 명령어와 해설을 담고 있습니다.",
     "key_features": [
-      "apt/dpkg를 이용한 .deb 패키지 오프라인 추출 스크립트 작성 (apt-cache, apt-rdepends 등 세 가지 방식 비교)",
-      "Confluent Schema Registry 및 Confluent Community 패키지의 오프라인 설치를 위한 deb 파일 추출 자동화",
-      "vim 설정 파일(.vimrc) 커스터마이징 및 root/일반 계정 모두 적용하는 방법 문서화",
-      "file descriptor 한도 설정, systemd 서비스 파일 연동 등 운영 환경별 설정 방법 기록",
-      "sudo tee를 활용한 root 권한 필요 경로 파일 쓰기, /tmp 경유 방법 등 파일 I/O 패턴 정리",
-      "DBeaver 오프라인 환경 설치 및 JDBC 드라이버 수동 등록 방법 정리"
+      "dpkg/apt를 활용한 오프라인 환경용 .deb 패키지 추출 스크립트 3종 제공 (apt-cache, apt-cache depends, apt-rdepends 방식 비교)",
+      "Confluent Schema Registry 및 Confluent Community 패키지를 오프라인 배포용으로 추출하는 자동화 스크립트 작성",
+      "root 권한이 필요한 경로에 파일을 쓰는 두 가지 방법(sudo mv, sudo tee) 정리 및 원인 설명",
+      "file descriptor 임시/영구 설정 방법과 systemd 서비스 파일에서의 LimitNOFILE 적용 방법 안내",
+      "vim 컬러 및 인덴트 설정을 일반 계정과 root 계정 양쪽에 적용하는 .vimrc 구성 및 원격 빠른 설치 스크립트 제공",
+      "Gemini CLI의 계층형 설정(Global/Local) 구조와 보안 설정 파일 템플릿 구성 가이드 작성"
     ],
     "tech_stack": [
       "Shell",
-      "Ubuntu",
-      "Debian",
-      "WSL2",
+      "Bash",
       "apt",
       "dpkg",
-      "vim",
       "systemd",
+      "vim",
+      "WSL2",
       "Docker",
+      "ncftp",
       "DBeaver",
-      "Confluent Platform",
-      "ncftp"
+      "Gemini CLI"
     ],
     "highlights": [
-      "dpkg-extraction 디렉토리에 apt-cache, apt-cache_depends, apt-rdepends 세 가지 방식을 장단점과 함께 비교 정리하여 실무 오프라인 환경 대응 노하우를 체계화함",
-      "Confluent Schema Registry/Community 패키지에 대해 레포지토리 등록부터 apt-rdepends를 이용한 confluent 관련 의존성만 필터링하여 deb 추출하는 실용적인 스크립트 포함",
-      "sudo가 리다이렉션(>)에 적용되지 않는 문제를 /tmp 경유 mv 방식과 sudo tee 방식으로 각각 해결하는 구체적인 예시 제공",
-      "vimrc 빠른 설치 스크립트에서 자신의 레포지토리 raw URL을 wget/curl로 참조하는 방식으로 설정 재사용 자동화"
+      "dpkg 추출 방식을 3가지 접근법으로 분류하고 각각의 장단점을 명시하여 상황에 따라 선택할 수 있도록 구성한 점",
+      "sudo가 리다이렉션(>)에 적용되지 않는 원인을 설명하고 /tmp 경유 이동과 sudo tee 두 가지 해결책을 함께 제시한 점",
+      "vim 설정을 일반 계정과 sudo vi 양쪽에 적용하기 위해 /root/.vimrc와 ~/.vimrc를 분리해야 하는 이유를 구체적으로 설명하고 원라이너 설치 스크립트까지 포함한 점",
+      "Gemini CLI의 Global/Local 설정 우선순위 구조를 정리하고 .geminiignore, settings.json, GEMINI.md 역할을 구분한 프로젝트 템플릿을 제공한 점"
     ],
-    "user_contribution_notes": "파일 구조, 내용, 스크립트 모두 단일 저자가 직접 작성한 흔적이 명확하며 레포지토리 내 자신의 raw URL 참조 등으로 주된 저자임이 확인됨. 외부 기여 흔적 없음.",
+    "user_contribution_notes": "",
     "is_toy": false,
     "truncated": false
   }

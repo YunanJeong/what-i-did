@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-04-30T07:28:05.439367Z",
+  "saved_at": "2026-05-06T05:58:09.122681Z",
   "model": "global.anthropic.claude-sonnet-4-6",
   "analysis": {
     "name": "yunanjeong.github.io",
@@ -7,18 +7,18 @@
     "description": null,
     "primary_language": null,
     "stars": 0,
-    "purpose": "GitHub Pages를 이용한 개인 프로필 또는 정적 웹사이트 레포지토리로, 현재 README 파일만 존재하며 실질적인 콘텐츠가 없는 상태입니다.",
+    "purpose": "GitHub Pages를 활용한 개인 프로필 또는 포트폴리오 사이트입니다.",
     "key_features": [
-      "README 파일을 통한 기본 레포지토리 설명 제공"
+      "GitHub Pages를 통한 정적 웹사이트 호스팅"
     ],
     "tech_stack": [
       "GitHub Pages"
     ],
     "highlights": [
-      "README.md 외 어떠한 소스 파일도 존재하지 않아 실질적인 구현 내용 없음"
+      "레포지토리 자체가 GitHub 프로필 사이트 도메인(yunanjeong.github.io)과 직접 연결되어 있음"
     ],
-    "user_contribution_notes": "레포지토리 소유자가 직접 생성한 것으로 보이나, README 2줄 외 아무런 코드나 콘텐츠가 없어 기여 범위가 극히 제한적입니다.",
-    "is_toy": true,
-    "truncated": false
+    "user_contribution_notes": "",
+    "is_toy": false,
+    "truncated": true
   }
 }

@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-04-30T07:25:16.844944Z",
+  "saved_at": "2026-05-06T05:55:32.537228Z",
   "model": "global.anthropic.claude-sonnet-4-6",
   "analysis": {
     "name": "flink-test",
@@ -7,20 +7,25 @@
     "description": null,
     "primary_language": null,
     "stars": 0,
-    "purpose": "Apache Flink를 탐색하고 Kafka Connect/Streams와의 비교를 정리한 메모 수준의 레포지토리로, 실질적인 코드나 구현물은 없음.",
+    "purpose": "Apache Flink를 직접 설치·운용해보며 Kafka Connect 및 Kafka Streams와의 역할 비교 및 적용 가능성을 탐색하는 테스트 레포지토리입니다.",
     "key_features": [
-      "Flink와 Kafka Connect/Streams 간의 역할 비교 메모 작성"
+      "Flink를 분석 도구로서 평가 및 검토",
+      "Kafka Connect + Kafka Streams 조합과 Flink 간의 처리량·속도 비교 분석",
+      "대규모 데이터 처리 시나리오에서의 Flink 적용 가능성 검토",
+      "코딩 자유도 측면에서 Flink의 활용 범위 정리"
     ],
     "tech_stack": [
       "Apache Flink",
-      "Apache Kafka"
+      "Apache Kafka",
+      "Kafka Connect",
+      "Kafka Streams"
     ],
     "highlights": [
-      "README 외 실제 코드 파일이 전혀 존재하지 않음",
-      "기술 비교 메모만 있는 미완성 또는 초기 탐색 단계의 레포지토리"
+      "Kafka 생태계 내에서 Flink의 포지셔닝을 처리량, 자유도, 운영 비용 측면으로 나누어 실용적으로 정리한 점",
+      "단순 기술 나열이 아니라 기존 스택과의 중복성 및 도입 비용을 함께 고려한 현실적인 관점이 담겨 있음"
     ],
-    "user_contribution_notes": "README.md 단일 파일만 존재하며, 내용도 기술 비교 메모 수준임. 실질적인 코드 기여가 없어 저자 판단이 불가능함.",
-    "is_toy": true,
+    "user_contribution_notes": "",
+    "is_toy": false,
     "truncated": false
   }
 }

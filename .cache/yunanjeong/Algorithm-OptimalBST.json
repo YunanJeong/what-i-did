@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-04-30T07:30:07.972359Z",
+  "saved_at": "2026-05-06T05:59:56.781216Z",
   "model": "global.anthropic.claude-sonnet-4-6",
   "analysis": {
     "name": "Algorithm-OptimalBST",
@@ -7,26 +7,25 @@
     "description": "Algorithm Project - Translator by Optimal Binary Search Tree",
     "primary_language": "Java",
     "stars": 0,
-    "purpose": "입력 텍스트 파일에서 영어 단어의 출현 빈도를 기반으로 최적 이진 탐색 트리(Optimal BST)를 구성하고, 이를 활용해 영어 단어를 한국어로 번역하는 알고리즘 과제 프로젝트입니다.",
+    "purpose": "영어 단어의 출현 빈도를 기반으로 최적 이진 탐색 트리(Optimal BST)를 구성하고, 이를 활용해 영어 텍스트를 한국어로 번역하는 프로그램입니다.",
     "key_features": [
-      "입력 파일에서 12개의 의학 관련 영어 단어 빈도수를 카운팅하여 확률 계산",
-      "동적 프로그래밍(DP)을 이용해 mainTable과 rootTable을 재귀적으로 채워 최적 BST 구성",
-      "rootTable을 기반으로 BSTNode 트리를 재귀적으로 생성",
-      "BST 탐색을 통해 영어 단어를 한국어로 번역하여 output.txt에 저장",
-      "FrequencyManager가 파일 입력 처리 및 확률 계산을 담당하고 ConstructManager가 DP 테이블 계산을 담당하는 역할 분리 구조"
+      "입력 파일에서 단어 출현 빈도를 집계하고 확률을 계산하여 데이터 테이블 구성",
+      "동적 프로그래밍 방식으로 비용 행렬(mainTable)과 루트 행렬(rootTable)을 재귀적으로 채워 Optimal BST 구축",
+      "rootTable을 기반으로 실제 BSTNode 트리 구조를 재귀적으로 생성",
+      "BST 탐색을 통해 영어 단어를 한국어로 변환하고 결과를 output.txt에 저장",
+      "Apache Commons Lang의 StringUtils를 활용해 줄 단위 단어 빈도 집계 처리"
     ],
     "tech_stack": [
       "Java",
-      "Apache Commons Lang 3"
+      "Apache Commons Lang"
     ],
     "highlights": [
-      "DP 테이블 채우기(calculateMainRootTableValue)를 반복문이 아닌 재귀 호출로 구현하여 대각선 방향으로 순회하는 방식 채택",
-      "사전 단어 집합이 12개 의학 단어로 하드코딩되어 있으며 한국어 문자열이 인코딩 깨짐 상태로 소스에 포함되어 있음",
-      "최솟값 초기화를 0으로 두고 첫 번째 후보값을 무조건 minValue로 설정하는 방식 사용 — 경계 조건 처리가 불완전할 수 있음",
-      "initializeMainTable()이 Main.java에서 중복 호출되는 버그 존재(2회 호출)"
+      "calculateMainRootTableValue가 i, j, startColumn 세 파라미터로 대각선 방향 순회를 재귀 호출로 구현하여 DP 테이블 전체를 채우는 구조가 비자명하게 설계됨",
+      "ConstructManager, FrequencyManager, TranslateManager로 역할을 분리해 각 단계(빈도 수집 → 트리 구축 → 번역)가 독립적으로 관리됨",
+      "확률 기반 가중치를 누적 합산하여 최소 비용 루트를 선택하는 Optimal BST 알고리즘 핵심 로직이 직접 구현됨"
     ],
-    "user_contribution_notes": "커밋 작성자 정보와 소스 상단 주석(Written By Yunhwan Jeong, 2017-06-15)으로 볼 때 단일 저자의 개인 과제 구현물로 판단됨. 모든 핵심 클래스(FrequencyManager, ConstructManager, TranslateManager, BSTNode, Data)가 직접 작성된 것으로 보임.",
-    "is_toy": true,
+    "user_contribution_notes": "",
+    "is_toy": false,
     "truncated": false
   }
 }

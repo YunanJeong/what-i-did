@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-04-30T07:23:51.807566Z",
+  "saved_at": "2026-05-06T05:54:22.424831Z",
   "model": "global.anthropic.claude-sonnet-4-6",
   "analysis": {
     "name": "kafka-jdbc-connector-control",
@@ -7,31 +7,29 @@
     "description": "db구조는 제각각. 백의DB,천의Table에서 데이터를 편하게 긁어오자.",
     "primary_language": "Smarty",
     "stars": 0,
-    "purpose": "다수의 DB와 테이블에 대해 Kafka JDBC Source Connector를 일괄 등록하는 자동화 도구로, DB×테이블 조합마다 커넥터를 Kafka Connect REST API에 등록한다.",
+    "purpose": "수백 개의 DB와 수천 개의 테이블에서 Kafka JDBC Source Connector를 자동으로 대량 등록·관리하기 위한 도구입니다. 테이블당 커넥터를 하나씩 운용하는 구조에서 발생하는 반복 작업을 자동화합니다.",
     "key_features": [
-      "환경변수로 주입된 DB 목록과 테이블 목록을 순회하며 커넥터 설정을 자동 생성",
-      "Python의 string.Template을 이용해 커넥터 JSON 설정을 동적으로 렌더링",
-      "Kafka Connect REST API(PUT /connectors/{name}/config)를 호출하여 커넥터 등록",
-      "Helm Chart(Kubernetes Job)로 배포하여 일회성 일괄 등록 작업 실행",
-      "values.yaml에서 DB 목록, 테이블 목록, 커넥터 템플릿 JSON을 선언적으로 관리",
-      "JDBC query 모드 기반 커넥터 템플릿에 DLQ, topic.creation, poll.interval 등 운영 설정 포함"
+      "환경변수로 DB 목록과 테이블 목록을 받아 모든 조합에 대해 커넥터를 자동 등록",
+      "Python string.Template을 활용해 커넥터 설정 JSON을 동적으로 생성",
+      "Kafka Connect REST API(PUT /connectors/{name}/config)를 통해 커넥터를 등록 또는 갱신",
+      "Helm Chart의 Kubernetes Job으로 커넥터 등록 작업을 배포 환경에서 실행",
+      "values.yaml의 env 블록으로 환경변수를 일원화하여 DB 접속 정보 및 커넥터 설정을 관리"
     ],
     "tech_stack": [
       "Python",
-      "requests",
       "Kafka Connect",
-      "Confluent JDBC Source Connector",
+      "JDBC Source Connector",
       "Helm",
       "Kubernetes",
       "Docker"
     ],
     "highlights": [
-      "DB 목록과 테이블 목록의 카르테시안 곱으로 커넥터 이름(db_host_table)을 생성하는 단순하지만 확장성 있는 루프 구조",
-      "TEMPLATE_JSON 환경변수로 커넥터 설정 전체를 문자열 템플릿으로 주입받아, Helm values.yaml 한 곳에서 커넥터 스펙을 완전히 제어 가능",
-      "Helm values.env 블록을 range로 일괄 환경변수화하여 임의의 추가 환경변수를 코드 변경 없이 컨테이너에 전달하는 구조",
-      "query 모드에서 CONCAT(timestamp_col, LPAD(id,6,'0'))으로 복합 증분 키(newid)를 생성하는 커스텀 쿼리 예시 포함"
+      "DB 목록과 테이블 목록의 조합을 이중 루프로 순회하며 커넥터 이름을 `{db_host}_{table}` 형식으로 자동 생성함으로써, 수천 개 커넥터 등록을 선언적 설정 한 벌로 처리할 수 있는 구조를 설계했다",
+      "values.yaml의 connect.template 필드에 커넥터 설정 JSON 템플릿을 통째로 주입하고, Python의 string.Template으로 치환하는 방식을 택해 커넥터 설정 포맷 변경에 유연하게 대응할 수 있다",
+      "Helm Job 템플릿에서 values.env를 range로 순회해 임의 환경변수를 자유롭게 추가할 수 있도록 설계하여, 새로운 커넥터 파라미터 추가 시 템플릿 수정 없이 values.yaml만 변경하면 된다",
+      "1테이블-1커넥터 구조의 트레이드오프(whitelist/blacklist 대비 query 모드 자유도, 개별 Producer 대비 운영 난이도)를 README에 명시적으로 설명하여 설계 의도를 문서화했다"
     ],
-    "user_contribution_notes": "파일 수가 적고 규모가 작지만, register.py 로직과 Helm Chart 구조 모두 본 저자가 직접 작성한 것으로 보인다. 보일러플레이트 Helm scaffold 위에 실제 운영 요구사항(대량 커넥터 등록 자동화)을 반영한 고유 구현이 존재한다.",
+    "user_contribution_notes": "",
     "is_toy": false,
     "truncated": false
   }

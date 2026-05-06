@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-04-30T07:25:34.359323Z",
+  "saved_at": "2026-05-06T05:55:46.571242Z",
   "model": "global.anthropic.claude-sonnet-4-6",
   "analysis": {
     "name": "redis-test",
@@ -7,30 +7,31 @@
     "description": "redis-test",
     "primary_language": null,
     "stars": 0,
-    "purpose": "K3s 환경에서 Bitnami Helm 차트를 이용해 Redis를 배포하기 위한 설정 파일 모음으로, custom.yaml을 통해 인증 비활성화·퍼시스턴스 비활성화·단일 마스터 구성·메트릭 활성화 등 테스트용 옵션을 적용한다.",
+    "purpose": "K3s 환경에서 Bitnami Helm 차트를 이용해 Redis를 배포하고, pub/sub 통신 방식 및 데이터 타입별 활용 패턴을 정리한 레퍼런스 레포지토리입니다.",
     "key_features": [
-      "custom.yaml로 bitnami/redis Helm 차트를 K3s에 배포하는 설치 명령 정의",
-      "인증(auth.enabled: false) 및 퍼시스턴스(persistence.enabled: false) 비활성화로 로컬 테스트 환경 구성",
-      "레플리카 수를 0으로 설정하여 단일 마스터 standalone 구성 적용",
-      "마스터 서비스를 LoadBalancer 타입으로 노출하여 클러스터 외부 접근 허용",
-      "메트릭 익스포터(redis-exporter) 활성화 설정",
-      "README에 redis-cli 명령어, 데이터 타입(Hash/List/Stream 등), pub/sub 네트워크 통신 방식 정리"
+      "Helm 커스텀 values 파일(custom.yaml)로 Redis 단독 마스터 구성 배포",
+      "마스터 서비스를 LoadBalancer 타입으로 외부 노출",
+      "레플리카 수를 0으로 설정해 standalone 모드로 운영",
+      "Prometheus 메트릭 익스포터 활성화(포트 9121)",
+      "인증 비활성화 및 퍼시스턴스 비활성화로 테스트 환경 최적화",
+      "redis-cli를 활용한 Key-Value, Hash, Pub/Sub 동작 검증 방법 문서화"
     ],
     "tech_stack": [
       "Redis",
       "Helm",
-      "Bitnami Redis Helm Chart",
       "K3s",
       "Kubernetes",
-      "Prometheus (metrics exporter)"
+      "Bitnami Redis Chart",
+      "Prometheus"
     ],
     "highlights": [
-      "default.yaml은 Bitnami 공식 차트의 전체 values 파일이며 개발자가 작성한 파일이 아님 — 실제 커스터마이징은 custom.yaml 단 504B에 집중됨",
-      "custom.yaml에서 replica.replicaCount: 0으로 sentinel/replication 없이 단순 standalone 테스트 구성을 명시적으로 선택",
-      "README가 Redis pub/sub 통신 방향, 인메모리 특성, Kafka/RabbitMQ와의 비교 등 개념 정리 노트로 활용되고 있어 학습·실험 목적임을 시사"
+      "custom.yaml에서 replica.replicaCount: 0과 master.service.type: LoadBalancer를 조합해 테스트 목적에 맞는 최소 구성을 명시적으로 선택한 점",
+      "README에서 Redis pub/sub의 양방향 네트워크 인가 필요성과 구독자 재등록 시나리오를 실운영 관점에서 구체적으로 분석한 점",
+      "Redis, Kafka, RabbitMQ의 설계 철학 차이(인메모리 vs 디스크 기반)를 근거로 도구 선택 기준을 서술한 점",
+      "default.yaml 전체를 함께 관리해 차트 기본값과 커스텀 오버라이드 간 차이를 명확히 추적할 수 있도록 구성한 점"
     ],
-    "user_contribution_notes": "개발자가 직접 작성한 파일은 custom.yaml(504B)과 README.md뿐이며, default.yaml은 Bitnami 공식 차트 values 파일 전체를 그대로 포함한 것으로 개발자 작성물이 아님. 기여 범위는 최소한의 배포 설정 및 학습 메모 수준.",
-    "is_toy": true,
+    "user_contribution_notes": "",
+    "is_toy": false,
     "truncated": false
   }
 }

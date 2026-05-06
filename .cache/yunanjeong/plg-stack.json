@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-04-30T07:21:45.839720Z",
+  "saved_at": "2026-05-06T05:52:26.702656Z",
   "model": "global.anthropic.claude-sonnet-4-6",
   "analysis": {
     "name": "plg-stack",
@@ -7,14 +7,14 @@
     "description": "Promtail, Loki, and Grafana for K8s Log Monitoring",
     "primary_language": null,
     "stars": 2,
-    "purpose": "Kubernetes 클러스터의 로그 모니터링을 위한 PLG(Promtail+Loki+Grafana) 스택 Helm values 구성 모음으로, 다양한 배포 환경(일반 K8s, EKS, 오프라인 등)에 맞춘 커스텀 values 파일을 제공한다.",
+    "purpose": "Kubernetes 클러스터의 컨테이너 로그를 수집·저장·시각화하기 위한 PLG(Promtail + Loki + Grafana) 스택 Helm values 구성 모음입니다. EKS를 포함한 다양한 K8s 환경에 맞춰 바로 적용할 수 있도록 시나리오별 values 파일을 제공합니다.",
     "key_features": [
-      "loki-stack Helm 차트용 다양한 values 파일(plg.yaml, promtail-loki.yaml, loki-grafana.yaml, promtail-loki-eks.yaml 등)을 환경별로 분리 관리",
-      "Loki Compactor 기반 retention 정책 설정(retention_enabled, retention_period) 적용",
-      "EKS 환경에서 AWS NLB(internet-facing) 및 LoadBalancer 소스 IP 제한 등 AWS 전용 어노테이션 구성",
-      "Promtail DaemonSet에 priorityClassName(system-node-critical) 및 toleration 설정으로 신규 노드 로그 수집 누락 방지",
-      "EKS EBS PV 마이그레이션을 위한 정적 프로비저닝용 PV/PVC 매니페스트(loki-eks-ebs-pv.yaml, loki-pvc.yaml) 제공",
-      "Grafana 대시보드 자동 프로비저닝(gnetId 13639, 15141, 22874) 및 StatefulSet 기반 persistence 설정"
+      "Promtail DaemonSet으로 K8s 컨테이너 로그를 수집하여 Loki에 푸시",
+      "Loki Compactor 기반 retention 정책 설정으로 로그 보존 기간 제어",
+      "EKS 환경 전용 values 파일에서 ECR 프라이빗 레지스트리 이미지, NLB 어노테이션, EBS PV 마이그레이션 절차를 포함한 배포 구성 제공",
+      "정적/동적 PV 프로비저닝 양쪽을 지원하는 PVC·PV 매니페스트 및 loki-stack 차트의 동적 프로비저닝 강제 동작 우회 방법 구현",
+      "Grafana 대시보드(gnetId 13639, 15141, 22874)를 values에서 선언적으로 프로비저닝",
+      "Promtail에 system-node-critical PriorityClass와 NoSchedule toleration을 설정하여 신규 노드 진입 시 로그 수집 누락 방지"
     ],
     "tech_stack": [
       "Helm",
@@ -23,16 +23,17 @@
       "Grafana",
       "Kubernetes",
       "Amazon EKS",
-      "AWS EBS",
-      "AWS NLB"
+      "Amazon EBS",
+      "AWS Load Balancer Controller",
+      "Karpenter"
     ],
     "highlights": [
-      "loki-stack 차트의 PVC 템플릿 버그(storageClassName 빈 문자열 미구분)를 파악하고, 정적 프로비저닝 시 PV/PVC를 사전 수동 생성하는 우회 방법을 구체적으로 문서화 및 매니페스트로 구현",
-      "Promtail의 기본 toleration 동작으로 인한 DaemonSet 스케줄링 지연 문제를 식별하고 NoSchedule toleration 추가로 해결",
-      "EKS 환경 전용 values에서 Loki 노드 고정(nodeSelector + Karpenter nodepool, AZ 지정), fsGroupChangePolicy: OnRootMismatch로 대용량 볼륨 마운트 시 I/O 병목 방지 적용",
-      "too many outstanding requests 오류 대응으로 querier.max_concurrent 및 query_scheduler.max_outstanding_requests_per_tenant를 2048로 조정하는 튜닝 패턴 포함"
+      "loki-stack 차트가 storageClassName 빈 문자열과 미기입을 구분하지 못해 정적 프로비저닝이 강제 동작하는 버그를 분석하고, 별도 PVC·PV 매니페스트 사전 생성 + existingClaim 참조 방식으로 우회하는 구체적인 해법을 문서화 및 구현",
+      "EBS PV 마이그레이션 시나리오(스냅샷 → 복제 EBS → PV 매니페스트 재생성 → 신규 Helm 배포)를 loki-eks-ebs-pv.yaml 파일과 주석으로 절차화",
+      "promtail-loki-affinity.yaml에서 Karpenter nodepool 레이블 기반 OR/AND 복합 nodeAffinity 조건을 활용해 특정 고부하 노드를 Promtail 스케줄링에서 제외하는 패턴 구현",
+      "too many outstanding requests 오류 대응으로 querier.max_concurrent 및 query_scheduler.max_outstanding_requests_per_tenant를 2048로 조정하는 설정을 별도 EKS values에 명시"
     ],
-    "user_contribution_notes": "모든 파일이 직접 작성된 Helm values 및 K8s 매니페스트이며, reference 디렉토리에 원본 차트 기본값을 별도 보관하고 나머지 파일에서 실제 운영 환경별 커스터마이징을 가한 구조로 보아 단독 저자로 판단된다.",
+    "user_contribution_notes": "",
     "is_toy": false,
     "truncated": false
   }

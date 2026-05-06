@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-04-30T07:29:22.084579Z",
+  "saved_at": "2026-05-06T05:59:16.887944Z",
   "model": "global.anthropic.claude-sonnet-4-6",
   "analysis": {
     "name": "TripScanner-android",
@@ -7,35 +7,38 @@
     "description": null,
     "primary_language": "Java",
     "stars": 0,
-    "purpose": "여행 동행자 매칭 Android 앱으로, 사용자가 여행 동행을 검색·생성·참여하고 상호 리뷰를 남길 수 있는 서비스의 클라이언트이다.",
+    "purpose": "여행 동행을 찾고 함께할 사람들을 연결해주는 Android 앱입니다. 사용자는 동행을 검색하고 참여하거나 직접 생성할 수 있으며, 동행 후 상대방에 대한 리뷰를 작성하고 조회할 수 있습니다.",
     "key_features": [
-      "Google Places Autocomplete와 날짜 범위 선택기를 조합하여 도시/날짜 조건으로 동행 여행 검색 수행",
-      "이메일/패스워드 기반 로그인 및 회원가입 처리, 인증 토큰을 SharedPreferences에 저장하여 세션 유지",
-      "내가 생성한 동행, 참여한 동행 목록을 RecyclerView 카드 형태로 표시",
-      "여행 상세 화면에서 동행 참여 신청(PUT /api/v1/trips/:id/join) 및 호스트 프로필·멤버 칩 표시",
-      "받은 리뷰 목록, 내가 쓴 리뷰 목록, 작성 대기 리뷰 목록 분리 조회 및 별점 표시",
-      "프로필 조회 및 수정(직업, 학교, 연락처, 생년월일, 국적, 자기소개 등) 지원"
+      "Google Places Autocomplete와 날짜 범위 선택기를 조합하여 목적지·체크인·체크아웃 조건으로 동행 검색",
+      "동행 상세 화면에서 호스트 프로필 확인 및 참여 신청(JOIN) 처리",
+      "내가 생성한 동행, 참여한 동행 목록을 각각 별도 화면에서 조회",
+      "리뷰 작성 대기(Pending), 내가 쓴 리뷰, 특정 사용자가 받은 리뷰를 구분하여 열람",
+      "이메일·비밀번호 기반 회원가입 및 로그인, 인증 토큰을 SharedPreferences에 저장하여 세션 유지",
+      "프로필 정보 조회 및 수정(직업, 학교, 연락처, 소개 등)"
     ],
     "tech_stack": [
       "Java",
       "Android SDK",
       "RecyclerView",
       "CardView",
-      "NavigationDrawer",
+      "NavigationView",
+      "CollapsingToolbarLayout",
+      "AppBarLayout",
+      "FloatingActionButton",
       "Google Places API",
       "SmoothDateRangePicker",
       "Jackson",
-      "HttpURLConnection",
+      "AsyncTask",
       "SharedPreferences",
-      "AsyncTask"
+      "HttpURLConnection"
     ],
     "highlights": [
-      "CommunicationManager 클래스에서 GET/POST/PUT/DELETE/QUERY 메서드를 직접 HttpURLConnection으로 구현하고, X-User-Email·X-User-Token 헤더로 Devise Token Auth 방식의 인증을 처리함",
-      "네비게이션 드로어 공통 로직을 BaseNaviActivity에 추상화하고 MainActivity가 이를 상속하는 계층 구조 적용",
-      "이미지 로딩을 별도의 DownloadImageTask(AsyncTask 서브클래스)로 각 Adapter 내에 인라인 정의하여 URL 비동기 다운로드 후 ImageView에 삽입",
-      "PendingReviewRecyclerAdapter의 리뷰 제출 버튼 핸들러가 UI 조작만 하고 실제 API 호출(ReviewWriteTask)을 invoke하지 않아 미완성 상태로 확인됨"
+      "CommunicationManager 클래스에 GET/POST/PUT/DELETE/QUERY 메서드를 집약하여 HTTP 통신 로직을 단일 책임으로 분리하고, 모든 API 요청에 X-User-Email·X-User-Token 헤더를 일관되게 주입",
+      "BaseNaviActivity를 상속 계층의 기반으로 두어 Navigation Drawer 렌더링과 메뉴 라우팅 로직을 한 곳에서 관리하고 MainActivity가 이를 상속하는 구조를 채택",
+      "RecyclerAdapter·ReviewRecyclerAdapter·PendingReviewRecyclerAdapter 각각에 inner AsyncTask(DownloadImageTask)를 내장하여 카드뷰 단위로 이미지를 비동기 로딩",
+      "OwnedReviewActivity에서 Intent로 전달된 userId 유무에 따라 자신의 리뷰와 타인의 리뷰를 동일 화면에서 분기 처리하는 재사용 설계"
     ],
-    "user_contribution_notes": "패키지명 com.example.yunan.tripscanner 및 모든 파일의 Created by yunan 주석으로 보아 단독 개발자로 판단됨. 30개 Java 파일 전체를 직접 작성한 주된 저자로 보임.",
+    "user_contribution_notes": "",
     "is_toy": false,
     "truncated": false
   }

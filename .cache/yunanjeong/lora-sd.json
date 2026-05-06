@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-04-30T07:26:37.388981Z",
+  "saved_at": "2026-05-06T05:56:49.048474Z",
   "model": "global.anthropic.claude-sonnet-4-6",
   "analysis": {
     "name": "lora-sd",
@@ -7,32 +7,33 @@
     "description": "LoRA(Low Rank Adaptation), Stable-Diffusion(Model), Packer",
     "primary_language": "HCL",
     "stars": 0,
-    "purpose": "AWS EC2에서 Stable Diffusion WebUI와 LoRA 학습 도구(kohya_ss)를 사전 설치한 온디맨드 생성 AI용 AMI 이미지를 Packer로 빌드하기 위한 자동화 스크립트 모음입니다.",
+    "purpose": "LoRA 파인튜닝과 Stable Diffusion WebUI를 온디맨드로 실행할 수 있는 AWS AMI를 Packer로 자동 빌드하는 프로젝트입니다. NVIDIA GPU 환경 세팅부터 kohya_ss, AUTOMATIC1111 WebUI 설치까지 이미지 생성 과정을 자동화합니다.",
     "key_features": [
-      "NVIDIA Driver 및 CUDA 12.5를 Ubuntu 24.04에 자동 설치",
-      "Python 3.10 환경 및 가상환경 구성 자동화",
-      "AUTOMATIC1111 Stable Diffusion WebUI를 AMI에 사전 설치 및 초기 실행 완료 상태로 구성",
-      "kohya_ss LoRA 학습 툴을 자동 클론 및 setup.sh 실행",
-      "WebUI 설치 완료 감지 후 프로세스를 강제 종료하여 Packer 빌드 진행 보장",
-      "Ubuntu 22.04(Deep Learning Base AMI)와 Ubuntu 24.04 두 가지 소스 AMI 지원"
+      "Packer를 이용해 Ubuntu 기반 GPU AMI를 자동 빌드",
+      "NVIDIA Driver 및 CUDA 12.5 설치 스크립트를 단계별로 분리하여 관리",
+      "AUTOMATIC1111 Stable Diffusion WebUI를 AMI에 사전 설치 및 초기 구동까지 완료",
+      "kohya_ss LoRA 학습 환경을 AMI 빌드 시점에 포함",
+      "WebUI 설치 완료 감지 후 프로세스를 자동 종료하는 대기 스크립트로 Packer 빌드 흐름 제어",
+      "Ubuntu 22 GPU 전용 이미지와 Ubuntu 24 LTS 이미지 두 가지 소스 AMI 전략 지원"
     ],
     "tech_stack": [
       "HCL",
       "Packer",
       "Bash",
       "NVIDIA CUDA",
-      "Python 3.10",
-      "Stable Diffusion WebUI (AUTOMATIC1111)",
+      "Python",
+      "Stable Diffusion WebUI",
       "kohya_ss",
       "filebrowser",
-      "AWS EC2 AMI"
+      "AWS EC2"
     ],
     "highlights": [
-      "webui.sh가 설치와 실행을 동시에 점유하는 문제를 해결하기 위해 wait_webui_install.sh를 nohup 백그라운드로 실행하여 HTTP 200 응답 확인 후 강제 종료하는 방식으로 Packer 빌드 완료를 보장",
-      "단순 sleep 대신 포트 폴링(최대 120회, 10초 간격)으로 설치 완료 시점을 동적으로 감지",
-      "Ubuntu 24 LTS(클린)와 Ubuntu 22 GPU 전용 딥러닝 AMI 두 경로를 분리하여 설치 스텝을 달리 구성"
+      "webui.sh가 설치와 실행을 동시에 수행하는 특성상 Packer 빌드가 세션에 블로킹되는 문제를 nohup 백그라운드 감시 스크립트(wait_webui_install.sh)로 해결 — 단순 sleep 대신 HTTP 200 응답 폴링 방식으로 설치 완료 시점을 감지",
+      "설치 소요 시간이 가변적인 WebUI 초기 구동을 curl 폴링(최대 120회, 10초 간격)으로 처리하여 타이밍 의존성을 제거",
+      "GPU AMI 소스를 두 가지로 분리해 사전 설치 항목에 따라 setup 명령을 다르게 구성, 동일 코드베이스에서 유연한 빌드 경로 제공",
+      "Python 3.10 가상환경을 webui.sh 실행 전에 직접 생성하는 우회 처리로 알려진 버그를 명시적으로 해결"
     ],
-    "user_contribution_notes": "파일 수가 적고 README와 스크립트 모두 단일 작성자 스타일로 일관성이 있으며, 한국어 주석과 설계 의도 설명이 상세히 포함되어 있어 해당 개발자가 주된 저자로 판단됩니다.",
+    "user_contribution_notes": "",
     "is_toy": false,
     "truncated": false
   }

@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-04-30T07:24:11.093438Z",
+  "saved_at": "2026-05-06T05:54:39.691546Z",
   "model": "global.anthropic.claude-sonnet-4-6",
   "analysis": {
     "name": "ec2-k8s-deploy",
@@ -7,33 +7,33 @@
     "description": "ec2-k8s-deploy",
     "primary_language": "HCL",
     "stars": 0,
-    "purpose": "AWS EC2 인스턴스에 Terraform을 사용하여 k3s 기반 Kubernetes 클러스터를 자동으로 프로비저닝하는 IaC 프로젝트입니다. 컨트롤플레인 1대와 다수의 에이전트 노드를 EC2에 배포하고 Docker, Helm, k9s까지 설치 자동화합니다.",
+    "purpose": "AWS EC2 인스턴스 위에 Terraform을 사용해 K3s 기반 Kubernetes 클러스터를 자동으로 프로비저닝하는 IaC 프로젝트입니다. 컨트롤플레인과 다수의 에이전트 노드를 한 번의 명령으로 구성할 수 있습니다.",
     "key_features": [
-      "Terraform으로 EC2 인스턴스 다중 생성 및 보안 그룹 구성",
-      "remote-exec provisioner를 통해 k3s 컨트롤플레인 및 에이전트 노드 자동 설치",
-      "컨트롤플레인에서 node-token을 추출해 에이전트에 자동 전달하는 로컬 실행 흐름 구현",
-      "Nexus(Docker 레지스트리, 파일 저장소) 및 GitLab 보안 그룹 규칙을 EC2 인스턴스에 동적으로 추가",
-      "Docker daemon.json에 insecure-registry 및 로그 설정을 사전 구성 후 Docker 설치",
-      "k3s 인증서 만료 방지를 위한 crontab 자동 등록 스크립트 포함"
+      "Terraform 변수 파일(config.tfvars)로 노드 수, AMI, 볼륨 등 클러스터 규모를 파라미터화하여 구성",
+      "EC2 인스턴스 프로비저닝 후 SSH remote-exec로 K3s 컨트롤플레인·에이전트 노드를 자동 설치 및 연결",
+      "컨트롤플레인 노드에서 서버 토큰을 로컬로 추출한 뒤 에이전트 노드에 전달하는 멀티노드 조인 흐름 구현",
+      "Nexus(Docker 레지스트리, 파일 저장소)·GitLab 보안그룹에 EC2 인스턴스 IP를 동적으로 허용 규칙으로 등록",
+      "Docker daemon.json을 통한 사설 레지스트리 및 로그 설정(max-size 10m) 포함 Docker 설치 자동화",
+      "K3s 인증서 1년 만료에 대비해 서버·에이전트 노드 역할을 자동 판별하고 월별 cron 갱신 작업을 등록"
     ],
     "tech_stack": [
       "Terraform",
       "HCL",
       "AWS EC2",
       "AWS Security Groups",
-      "k3s",
+      "K3s",
       "Docker",
       "Helm",
       "k9s",
       "Bash"
     ],
     "highlights": [
-      "k3s 서버 설치 후 node-token을 local-exec로 로컬 파일에 저장하고, 이후 에이전트 노드 provisioner에서 해당 파일을 읽어 K3S_TOKEN 환경변수로 주입하는 순차 의존성 설계가 명확함",
-      "보안 그룹에 신규 그룹을 추가하는 방식 대신, 기존 저장소 보안 그룹에 인그레스 규칙만 추가하는 방식을 선택하여 인스턴스당 보안 그룹 개수 제한 문제를 회피함",
-      "k3s 리프 인증서(1년 만료) 자동 갱신을 위해 서버/에이전트 노드 역할을 systemctl 상태로 판별해 각각 다른 crontab을 등록하는 스크립트를 구현함",
-      "Docker daemon.json을 설치 전에 먼저 작성하여 insecure-registry 및 k3s 권장 로그 max-size(10m)를 선제 적용하는 순서 설계"
+      "보안그룹 생성 후 인스턴스에 추가하는 방식 대신 기존 저장소 보안그룹에 규칙을 직접 추가하는 방식을 택해, 인스턴스당 보안그룹 개수 제한 문제를 의도적으로 회피한 설계",
+      "컨트롤플레인 설치 완료 후 local-exec로 node-token을 로컬 파일에 저장하고, 이후 에이전트 null_resource가 해당 파일을 읽어 K3S_TOKEN 환경변수로 주입하는 순차적 의존성 체인 구성",
+      "install_cron_k3s_cert_rotate.sh에서 systemctl 상태 확인으로 노드 역할(server/agent)을 런타임에 판별한 뒤 각각 다른 cron 커맨드를 등록하여 단일 스크립트로 양쪽 노드 유형을 처리",
+      "Docker 로그 max-size를 10m으로 설정하고 K3s kubelet 기본값과 일치시켜 불필요한 에러 메시지 발생을 방지한 운영 디테일 반영"
     ],
-    "user_contribution_notes": "단일 저자가 전체 구조를 직접 설계한 것으로 보입니다. Terraform 모듈 분리, init 스크립트 작성, 운영 시 발생하는 인증서 만료 문제 대응 등 실사용 경험이 반영된 독자적인 코드입니다.",
+    "user_contribution_notes": "",
     "is_toy": false,
     "truncated": false
   }

@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-04-30T07:27:58.871845Z",
+  "saved_at": "2026-05-06T05:58:05.552603Z",
   "model": "global.anthropic.claude-sonnet-4-6",
   "analysis": {
     "name": "devenv-windows-java-intellij-git",
@@ -7,30 +7,30 @@
     "description": null,
     "primary_language": null,
     "stars": 0,
-    "purpose": "Windows 환경에서 IntelliJ, Java, Git(WSL2 포함)을 연동하는 개발환경 설정 방법을 정리한 노트 레포지토리입니다.",
+    "purpose": "Windows 환경에서 IntelliJ와 Java 개발 환경을 구성할 때 겪을 수 있는 시행착오와 설정 방법을 정리한 가이드 레포지토리입니다. WSL2 연동 및 Git 설정 관련 주의사항을 실용적인 관점에서 기록합니다.",
     "key_features": [
-      "Windows에서 IntelliJ + Git 연동 설정 방법 문서화",
-      "WSL2 경로를 IntelliJ 프로젝트로 오픈하는 방법 안내",
-      "WSL2+IntelliJ 조합에서 Gradle 미지원(Maven만 가능) 이슈 기록",
-      "IntelliJ에서 global/local git 설정 동작 차이 정리",
-      "Git Bash 미설치 시 WSL2 .gitconfig에 정보가 기록되는 부작용 문서화"
+      "Windows에서 IntelliJ + Java + Git 빠른 초기 설정 방법 안내",
+      "IntelliJ에서 WSL2 경로의 프로젝트를 열어 리눅스 환경으로 개발하는 방법 설명",
+      "WSL2 + IntelliJ 조합에서 Gradle 미지원(Maven만 가능) 이슈 명시",
+      "IntelliJ Git 커밋 시 전역/로컬 git config 적용 방식 차이 정리",
+      "Git Bash 미설치 시 IntelliJ가 WSL2의 .gitconfig를 수정하는 동작 및 다중 계정 주의사항 기록",
+      "예제 Gradle 프로젝트(JUnit 5 기반) 포함"
     ],
     "tech_stack": [
       "Java",
       "IntelliJ IDEA",
       "Gradle",
-      "JUnit Jupiter",
       "Git",
       "WSL2",
-      "Windows"
+      "JUnit Jupiter"
     ],
     "highlights": [
-      "Git Bash 미설치 상태에서 IntelliJ가 WSL2의 .gitconfig를 수정하며 IncludeIf 구문을 무시하는 비직관적 동작을 직접 확인하여 기록",
-      "WSL2+IntelliJ 조합에서 Gradle이 오류를 일으키고 Maven만 정상 동작한다는 실험적 트러블슈팅 결과 포함",
-      "build.gradle은 최소한의 Java+JUnit 기본 템플릿으로, 설명을 위한 예시 프로젝트로만 존재"
+      "IntelliJ가 Git Bash 없이 전역 커밋을 시도할 때 WSL2의 .gitconfig를 수정하며 IncludeIf 조건이 무시된다는 비자명한 동작을 직접 검증해 문서화한 점",
+      "WSL2 + IntelliJ 조합에서 Gradle이 오류를 일으키고 Maven만 정상 동작한다는 실사용 제약을 명확히 명시",
+      "다중 Git 계정(개인/업무) 환경에서 발생할 수 있는 config 충돌 상황과 대응 방안을 구체적으로 기술"
     ],
-    "user_contribution_notes": "README 전체와 예시 build.gradle이 단일 저자에 의해 작성된 것으로 보이며, 주요 내용은 개인 트러블슈팅 경험을 정리한 설정 노트입니다.",
-    "is_toy": true,
+    "user_contribution_notes": "",
+    "is_toy": false,
     "truncated": false
   }
 }

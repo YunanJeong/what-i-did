@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-04-30T07:18:46.984704Z",
+  "saved_at": "2026-05-06T05:49:58.407429Z",
   "model": "global.anthropic.claude-sonnet-4-6",
   "analysis": {
     "name": "how-to-manage-git",
@@ -7,13 +7,12 @@
     "description": "개인 참고용",
     "primary_language": "Shell",
     "stars": 2,
-    "purpose": "Git 사용 시 헷갈릴 수 있는 부분(브랜치 관리, 사용자 정보, 레포지토리 통합, 태그 등)을 정리한 개인 참고용 문서 모음 레포지토리입니다. 만료된 Git 토큰을 여러 로컬 저장소에서 일괄 교체하는 셸 스크립트도 포함합니다.",
+    "purpose": "여러 로컬 Git 저장소에서 만료된 토큰을 일괄 교체하는 셸 스크립트와, Git 운용 중 자주 헷갈리는 브랜치·사용자 정보·태그·레포 통합 등의 노하우를 정리한 개인 참고 레포지토리입니다.",
     "key_features": [
-      "만료된 Git 토큰을 여러 로컬 저장소의 .git/config에서 일괄 교체하는 스크립트 제공",
-      "find 명령으로 지정 루트 디렉터리 하위의 모든 .git 디렉터리를 재귀 탐색",
-      "sed를 이용해 OLD_TOKEN을 NEW_TOKEN으로 치환 (GNU sed 기준)",
-      "환경변수(OLD_GIT_TOKEN, NEW_GIT_TOKEN)로 토큰을 받아 보안 노출 최소화",
-      "브랜치, 사용자 정보, 레포지토리 통합, 태그/버전 관리에 대한 개인 참고 문서 링크 정리"
+      "환경변수로 OLD/NEW 토큰을 받아 보안 정보가 stdout에 노출되지 않도록 처리",
+      "루트 디렉터리 아래 모든 .git/config를 재귀 탐색하여 토큰을 일괄 교체",
+      "교체 대상 경로를 인자로 지정하거나 현재 디렉터리를 기본값으로 사용",
+      "브랜치·사용자 정보·태그·레포 통합 등 Git 운용 주제별 문서 정리"
     ],
     "tech_stack": [
       "Shell",
@@ -22,13 +21,12 @@
       "find"
     ],
     "highlights": [
-      "set -euo pipefail로 스크립트 안전성 확보 및 환경변수 미설정 시 즉시 실패 처리",
-      "토큰을 stdout에 출력하지 않도록 명시적으로 주의하고, bashrc 등록을 지양하는 보안 가이드라인 내재화",
-      "루트 디렉터리를 인수로 받아 재사용성을 높인 설계 (기본값: 현재 경로)",
-      "GNU sed와 BSD sed 차이에 대한 호환성 주석 포함"
+      "set -euo pipefail로 오류·미정의 변수·파이프 실패 시 즉시 종료되도록 안전성을 확보한 점",
+      "토큰 값을 export 환경변수로만 주입하고 bashrc 등에 기록하지 말도록 스크립트 내 주석으로 명시한 보안 처리 방식",
+      "GNU sed와 BSD sed의 -i 옵션 차이를 주석으로 명기하여 macOS 환경에서의 이식성 문제를 미리 안내한 점"
     ],
-    "user_contribution_notes": "파일 구조와 스크립트 모두 단일 저자가 직접 작성한 것으로 보이며, 개인 참고용 목적에 맞게 실용적인 유틸리티 스크립트와 문서를 직접 작성한 것으로 판단됩니다.",
-    "is_toy": true,
+    "user_contribution_notes": "",
+    "is_toy": false,
     "truncated": false
   }
 }

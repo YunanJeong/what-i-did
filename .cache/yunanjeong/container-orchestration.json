@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-04-30T07:21:13.424510Z",
+  "saved_at": "2026-05-06T05:51:51.150829Z",
   "model": "global.anthropic.claude-sonnet-4-6",
   "analysis": {
     "name": "container-orchestration",
@@ -7,14 +7,14 @@
     "description": "Container Orchestration Tips, Examples, Practice",
     "primary_language": "Shell",
     "stars": 1,
-    "purpose": "Docker 및 Kubernetes(K3s, minikube, EKS) 환경 구성에 필요한 설치 스크립트, 매니페스트 예제, 운영 팁을 정리한 개인 레퍼런스 및 학습 노트 레포지토리입니다.",
+    "purpose": "Docker 및 Kubernetes 환경을 실무·학습 양쪽에서 활용하기 위한 컨테이너 오케스트레이션 설정 모음으로, Docker 설치·데몬 구성부터 K3s 클러스터 구축, EKS Karpenter 노드풀 정의까지 다룬다.",
     "key_features": [
-      "Ubuntu에 Docker Engine(docker-ce)을 설치하는 셸 스크립트 제공",
-      "Docker daemon.json을 통해 insecure registry, log rotation, overlay2 스토리지 드라이버 설정 자동화",
-      "K3s control plane 설치 및 kubeconfig 권한 설정, Helm 4, k9s 자동 설치 스크립트 작성",
-      "K3s 인증서 만료 방지를 위한 cron 작업을 서버/에이전트 노드 유형별로 자동 등록하는 스크립트 구현",
-      "Pod, ReplicaSet, Deployment, Service(ClusterIP/NodePort/LoadBalancer), Ingress, MetalLB 등 K8s 오브젝트 예제 YAML 제공",
-      "AWS EKS Karpenter v1(EC2NodeClass, NodePool) 샘플 노드 정의 YAML 작성 및 v1beta1 대비 변경사항 주석 포함"
+      "Docker Engine 설치 자동화 및 데몬 옵션(로그 드라이버, 프라이빗 레지스트리, overlay2 스토리지) 스크립트로 구성",
+      "K3s 컨트롤플레인 설치와 kubectl 별칭·kubeconfig 권한 설정을 단일 셸 스크립트로 자동화",
+      "K3s 1년 만료 인증서를 매월 1일 자동 갱신하는 crontab 등록 스크립트 작성(server/agent 노드 자동 판별 포함)",
+      "Pod·ReplicaSet·Deployment·Service(ClusterIP/NodePort/LoadBalancer)·Ingress 오브젝트를 단계별 예제 매니페스트로 구성",
+      "MetalLB를 이용한 로컬 LoadBalancer 환경 구성(K3s용, minikube용 각각 분리)",
+      "AWS EKS Karpenter v1 API 기반 EC2NodeClass·NodePool 정의 샘플 작성(v1beta1 → v1 변경사항 주석 포함)"
     ],
     "tech_stack": [
       "Docker",
@@ -25,15 +25,20 @@
       "k9s",
       "MetalLB",
       "Karpenter",
+      "Redis",
+      "MariaDB",
+      "WordPress",
+      "Kafka UI",
+      "Grafana",
       "Shell"
     ],
     "highlights": [
-      "install_cron_k3s_cert_rotate.sh에서 systemctl 상태로 현재 노드가 k3s-server인지 k3s-agent인지 자동 판별하여 서로 다른 cron 명령을 등록하는 로직 구현",
-      "daemon.json.sh에서 Docker 29버전의 containerd storage-driver 기본 도입으로 인한 호환성 이슈를 인지하고 overlay2 강제 설정 및 사설 registry mirror 구성을 스크립트화",
-      "EKS Karpenter 샘플에서 v1beta1→v1 API 변경사항(amiSelectorTerms 필수화, expireAfter 위치 이동, consolidateAfter 필수화, group/kind 명시 등)을 상세 주석으로 문서화",
-      "Kafka-UI Docker Compose를 bridge 네트워크 모드(host.docker.internal 활용)와 host 네트워크 모드 두 가지 방식으로 분리 예제화"
+      "daemon.json 생성 스크립트에서 로그 max-size·max-file, overlay2 스토리지 드라이버, insecure-registry를 환경변수 기본값 패턴(URL_DOCKER:-\"docker.wai\")으로 처리해 재사용성을 높임",
+      "K3s 인증서 갱신 스크립트가 systemctl is-active로 현재 노드 역할(server vs agent)을 런타임에 판별한 뒤 각각 다른 cron 명령을 등록하는 구조로 작성됨",
+      "Karpenter v1 매니페스트에 v1beta1 대비 변경된 필수 필드(amiSelectorTerms, group/kind in nodeClassRef, consolidateAfter, expireAfter 위치 이동)를 인라인 주석으로 명시해 마이그레이션 참조 자료로 활용 가능",
+      "Ingress 예제에서 subpath 리다이렉션이 정상 동작하지 않는 이유(앱 자체 내부 리다이렉션 충돌)를 주석으로 직접 분석하고 helm 설정 우회 방법을 제안"
     ],
-    "user_contribution_notes": "모든 스크립트와 YAML, README를 단독 작성한 것으로 보이며 커밋 패턴상 1인 저자 레포지토리입니다. 단순 튜토리얼 복사가 아닌 실제 운영 시 맞닥뜨리는 이슈(K3s 인증서 만료, Docker 버전별 호환성, Karpenter API 버전 마이그레이션 등)에 대한 자체 해결 내용이 포함되어 있어 실무 경험 기반 정리로 판단됩니다.",
+    "user_contribution_notes": "",
     "is_toy": false,
     "truncated": false
   }
