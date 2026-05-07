@@ -65,36 +65,36 @@ uv run what-i-did <username> [옵션]
 
 ```bash
 # 기본: 한국어, claude-sonnet-4-6 (Anthropic API 경로)
-uv run what-i-did octocat
+uv run what-i-did yunanjeong
 
 # 영어 출력
-uv run what-i-did octocat --lang en
+uv run what-i-did yunanjeong --lang en
 
 # 특정 레포만 분석 (repo 이름에 glob 매칭, 반복 가능)
 uv run what-i-did yunanjeong --include 'kafka-*' --include 'kstreams-*'
 
 # 특정 레포 제외 (repo 이름에 glob 매칭, 반복 가능)
-uv run what-i-did octocat --exclude 'test-*' --exclude 'sandbox'
+uv run what-i-did yunanjeong --exclude 'test-*' --exclude 'sandbox'
 
 # include 와 exclude 는 함께 쓸 수 있다 (include 먼저, 그 후 exclude)
 uv run what-i-did yunanjeong --include 'kafka-*' --exclude '*-manager'
 
 # 모델 교체
-uv run what-i-did octocat --model claude-opus-4-7
+uv run what-i-did yunanjeong --model claude-opus-4-7
 
 # AWS Bedrock 경로 (모델 id 는 Bedrock 형식)
-uv run what-i-did octocat \
+uv run what-i-did yunanjeong \
   --provider bedrock \
   --model 'global.anthropic.claude-sonnet-4-6'
 
 # 출력 경로 (확장자 제외). .md 와 .docx 가 함께 생성됨
-uv run what-i-did octocat --output ./out/portfolio-octocat
+uv run what-i-did yunanjeong --output ./out/portfolio-yunanjeong
 
 # 캐시 무시하고 전체 재분석
-uv run what-i-did octocat --refresh
+uv run what-i-did yunanjeong --refresh
 
 # 디버깅: 앞의 N개 repo 만
-uv run what-i-did octocat --max-repos 2
+uv run what-i-did yunanjeong --max-repos 2
 ```
 
 ### 옵션
