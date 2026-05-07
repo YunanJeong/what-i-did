@@ -70,8 +70,14 @@ uv run what-i-did octocat
 # 영어 출력
 uv run what-i-did octocat --lang en
 
+# 특정 레포만 분석 (repo 이름에 glob 매칭, 반복 가능)
+uv run what-i-did yunanjeong --include 'kafka-*' --include 'kstreams-*'
+
 # 특정 레포 제외 (repo 이름에 glob 매칭, 반복 가능)
 uv run what-i-did octocat --exclude 'test-*' --exclude 'sandbox'
+
+# include 와 exclude 는 함께 쓸 수 있다 (include 먼저, 그 후 exclude)
+uv run what-i-did yunanjeong --include 'kafka-*' --exclude '*-manager'
 
 # 모델 교체
 uv run what-i-did octocat --model claude-opus-4-7
@@ -96,6 +102,7 @@ uv run what-i-did octocat --max-repos 2
 | 옵션 | 기본값 | 설명 |
 |------|--------|------|
 | `USERNAME` | *(필수)* | 분석할 GitHub 사용자명 |
+| `--include`, `-i` | — | repo 이름에 매칭할 glob. 매칭되는 것만 남김. 반복 가능. exclude 보다 먼저 적용 |
 | `--exclude`, `-e` | — | repo 이름에 매칭할 glob. 반복 가능 |
 | `--provider`, `-p` | `anthropic` | LLM 제공자: `anthropic` 또는 `bedrock` |
 | `--model`, `-m` | `claude-sonnet-4-6` *(anthropic 일 때)* | 모델 id. bedrock 에서는 필수 |

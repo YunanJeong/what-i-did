@@ -71,6 +71,11 @@ def _default_cache_dir() -> Path:
 
 def generate(
     username: str = typer.Argument(..., help="GitHub username to analyze."),
+    include: list[str] = typer.Option(
+        [], "--include", "-i",
+        help="Glob pattern matched against repo name; only matching repos are kept. "
+             "Repeatable. Applied before --exclude.",
+    ),
     exclude: list[str] = typer.Option(
         [], "--exclude", "-e",
         help="Glob pattern matched against repo name. Repeatable.",
@@ -137,6 +142,7 @@ def generate(
 
     console.print("Fetching repository list…")
     repos = collect.list_repos(username, include_forks=include_forks)
+    repos = collect.filter_included(repos, include)
     repos = collect.filter_excluded(repos, exclude)
     if max_repos is not None:
         repos = repos[:max_repos]

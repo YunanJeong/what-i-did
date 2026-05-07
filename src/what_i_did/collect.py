@@ -145,6 +145,20 @@ def filter_excluded(
     return kept
 
 
+def filter_included(
+    repos: list[RepoMeta], include_globs: list[str]
+) -> list[RepoMeta]:
+    # include_globs 가 비면 전부 통과 (기본 동작 유지). 비어 있지 않으면
+    # 그 중 하나라도 매칭되는 repo 만 남긴다. exclude 와 짝을 이루며,
+    # 호출 순서는 include → exclude.
+    if not include_globs:
+        return repos
+    return [
+        r for r in repos
+        if any(fnmatch.fnmatch(r.name, pat) for pat in include_globs)
+    ]
+
+
 def clone_repo(meta: RepoMeta, workdir: Path) -> Path | None:
     target = workdir / meta.name
     if target.exists():
