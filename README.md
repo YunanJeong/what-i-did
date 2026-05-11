@@ -12,7 +12,7 @@ README만 읽으면 과장되거나 부정확할 때가 많으므로, 실제 소
 - 한국어 / 영어 출력 (`--lang ko|en`)
 - Anthropic 모델 선택 가능 (기본 `claude-sonnet-4-6`)
 - **Anthropic API 와 AWS Bedrock 양쪽 지원** (`--provider anthropic|bedrock`)
-- repo 이름 기준 glob 으로 제외 가능
+- repo 이름 기준 glob 으로 포함/제외 가능 (`--include`, `--exclude`)
 
 ## 요구 사항
 
@@ -116,7 +116,7 @@ uv run what-i-did yunanjeong --max-repos 2
 ## 출력물 구성
 
 1. **전체 요약** — 모든 repo 분석을 근거로 LLM 이 한 단락 요약
-2. **주요 프로젝트** — `is_toy=false` 판정된 repo 카드 (목적 · 주요 기능 · 사용 기술 · 구현 특이점 · 기여 범위)
+2. **주요 프로젝트** — `is_toy=false` 판정된 repo 카드 (목적 · 주요 기능 · 사용 기술 · 구현 특이점)
 3. **사이드 · 학습용 프로젝트** — 튜토리얼/템플릿 수준으로 판정된 repo
 4. **기술 스택** — repo 간 집계된 기술 카운트 표
 

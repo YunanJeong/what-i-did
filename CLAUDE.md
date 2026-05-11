@@ -16,7 +16,10 @@
 ```bash
 uv sync                                      # 의존성 설치
 uv run what-i-did <username>                 # 기본 (anthropic, ko, claude-sonnet-4-6)
-uv run what-i-did <username> --provider bedrock --model 'anthropic.claude-...-v1:0'
+uv run what-i-did <username> --provider bedrock \
+  --model 'global.anthropic.claude-sonnet-4-6'   # cross-region inference id 형식
+# 또는: --model 'anthropic.claude-sonnet-4-5-20250929-v1:0' (region-specific)
+uv run what-i-did <username> --include 'kafka-*' --exclude '*-manager'
 uv run what-i-did <username> --refresh       # 캐시 무시
 uv run ruff check src/                       # 린트
 ```
@@ -52,6 +55,7 @@ cli.py                 typer 엔트리, provider 분기, 오케스트레이션
 
 - `what-i-did-yunanjeong-*.md|docx` — **샘플 결과물.** 사용자가 의도해서 커밋한 것. `.gitignore` 에 추가하지 말 것.
 - `uv.lock` — 의존성 잠금 파일. 커밋이 정석.
+- `cache/` (있을 경우) — 사용자가 `--cache-dir ./cache` 로 캐시를 레포 내부에 두고 git 으로 멀티 머신 동기화하는 패턴을 쓸 수 있음. `.gitignore` 에 추가하지 말 것.
 
 ## Claude 에게
 
